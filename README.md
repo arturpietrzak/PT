@@ -8,7 +8,7 @@ Repository for Programming Technologies classes
 | AP                      | `{914faed3-a192-4cd8-9da9-9cfd0afdd2f7}` |
 
 
-## Checklist
+## Task 0 checklist
 - [ ] the task provides required feedback and has been submitted (needs grading)
 - [ ] the ability to clone the repository to the teacher's computer
 - [X] `README.md` contains required information
