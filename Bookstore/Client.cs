@@ -1,8 +1,22 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 
-public class Class1
+namespace DataLayer
 {
-	public Class1()
+	public class Client
 	{
+		public int Client_Id { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		
+
+		public Client (int client_Id, string firstName, string lastName)
+        {
+			Client_Id = client_Id;
+			FirstName = firstName;
+			LastName = lastName;
+ 
+        }
 	}
 }
+
