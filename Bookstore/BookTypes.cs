@@ -1,8 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-public class Class1
+namespace DataLayer
 {
-	public Class1()
+	public enum BookTypes
 	{
+		fantasy,
+		sci-fi,
+		horror,
+		romance,
+		poetry,
+		thriller
 	}
 }
