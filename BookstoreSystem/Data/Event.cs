@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bookstore
+namespace BookstoreSystem.Data
 {
-    public class Class1
+    internal interface IEvent
     {
     }
 }
