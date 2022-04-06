@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    internal class State
+    public class State
     {
         private Book book;
 

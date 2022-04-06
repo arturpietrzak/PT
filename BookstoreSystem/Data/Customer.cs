@@ -1,4 +1,6 @@
-﻿namespace BookstoreSystem.Data
+﻿using System;
+
+namespace BookstoreSystem.Data
 {
     public class Customer
     {
