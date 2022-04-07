@@ -6,52 +6,28 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data.API
 {
-    // DataContext
     public abstract class DataLayerAbstractAPI
     {
-        // abstract connection methods
-        public abstract List<Book> Books();
-        public abstract List<Customer> Customers();
-        public abstract List<Event> Events();
-        public abstract List<State> States();
+        public DataContext context;
+        public abstract void Connect();
 
         // factory method
-        public static DataLayerAbstractAPI CreateDataCollection()
+        public static DataLayerAbstractAPI CreateSimpleAPIImplementation()
         {
-            return new DataCollection();
+            return new SimpleAPIImplementation();
         }
 
-        // implementation
-        private class DataCollection : DataLayerAbstractAPI
+
+        private class SimpleAPIImplementation : DataLayerAbstractAPI
         {
-            // From UML:
-            // catalog
-            public List<Book> books = new List<Book>();
-            // users
-            public List<Customer> customers = new List<Customer>();
-            // events
-            public List<Event> events = new List<Event>();
-            // states
-            public List<State> states = new List<State>();
-
-            public override List<Book> Books()
+            public SimpleAPIImplementation()
             {
-                return this.books;
+                this.context = new DataContext();
             }
 
-            public override List<Customer> Customers()
+            public override void Connect()
             {
-                return this.customers;
-            }
-
-            public override List<Event> Events()
-            {
-                return this.events;
-            }
-
-            public override List<State> States()
-            {
-                return this.states;
+                // some connection, maybe some generated values?
             }
         }
     }
