@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Logic.API
 {
-    public class LogicLayerAbstractAPI
+    public abstract class LogicLayerAbstractAPI
     {
         public static LogicLayerAbstractAPI CreateLayer(DataLayerAbstractAPI? data = default)
         {
-            return new LogicLayer(data == null ? DataLayerAbstractAPI.CreateSimpleAPIImplementation() : data);
+            return new LogicLayer(data ?? DataLayerAbstractAPI.CreateSimpleAPIImplementation());
         }
 
         private class LogicLayer : LogicLayerAbstractAPI
