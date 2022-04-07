@@ -13,7 +13,6 @@ namespace BookstoreSystem.Data
         private int pages;
         private double price;
         private Genre genre;
-        private State state;
 
         public Book(int _id, string _name, int _pages,
             double _price, Genre _genre)
@@ -46,11 +45,7 @@ namespace BookstoreSystem.Data
             get { return genre; }
             set { genre = value; }
         }
-        public State State
-        {
-            get { return state; }
-            set { state = value; }
-        }
+
 
         // override Equals and GetHashCode for easier comparison in repository
         public override bool Equals(object? obj)
@@ -63,15 +58,5 @@ namespace BookstoreSystem.Data
         {
             return HashCode.Combine(id);
         }
-    }
-
-    public enum Genre
-    {
-        fantasy,
-        romance,
-        scifi,
-        poetry,
-        adventure,
-        guide
     }
 }

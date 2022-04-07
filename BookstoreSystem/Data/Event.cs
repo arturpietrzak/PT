@@ -9,18 +9,18 @@ namespace BookstoreSystem.Data
     public abstract class Event
     {
         private State state;
-        private Customer client;
+        private Customer customer;
         private DateTime eventDate;
 
         protected Event(State _state, Customer _client)
         {
             this.state = _state;
-            this.client = _client;
+            this.customer = _client;
             this.eventDate = DateTime.Now;
         }
 
         public State State { get { return this.state; } }
-        public Customer Client { get { return this.client; } } 
+        public Customer Customer { get { return this.customer; } } 
         protected DateTime EventDate { get { return this.eventDate; } }
     }
 }
