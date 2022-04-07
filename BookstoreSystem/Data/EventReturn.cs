@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public class EventPurchase : Event
+    public class EventReturn : Event
     {
-        public EventPurchase(State _state, Customer _customer) 
+        public EventReturn(State _state, Customer _customer) 
             : base(_state, _customer)
         { }
     }

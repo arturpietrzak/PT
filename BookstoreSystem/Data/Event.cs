@@ -18,5 +18,9 @@ namespace BookstoreSystem.Data
             this.client = _client;
             this.eventDate = DateTime.Now;
         }
+
+        public State State { get { return this.state; } }
+        public Customer Client { get { return this.client; } } 
+        protected DateTime EventDate { get { return this.eventDate; } }
     }
 }

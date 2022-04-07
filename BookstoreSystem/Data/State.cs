@@ -15,6 +15,6 @@ namespace BookstoreSystem.Data
             this.book = _book;
         }
 
-        public Book Book { get; }
+        public Book Book { get { return book; } }
     }
 }
