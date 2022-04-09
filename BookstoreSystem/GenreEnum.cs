@@ -13,6 +13,7 @@ namespace BookstoreSystem
         scifi,
         poetry,
         adventure,
-        guide
+        guide,
+        thriller
     }
 }
