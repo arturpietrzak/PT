@@ -17,6 +17,11 @@ namespace BookstoreSystem.Data
             this.dataContext = new DataContext();
         }
 
+        public DataRepository(DataContext dataContext)
+        {
+            this.dataContext = new DataContext();
+        }
+
         // for Book
         public List<Book> AllBooks()
         {
@@ -61,9 +66,7 @@ namespace BookstoreSystem.Data
         // for Customer
         public List<Customer> AllCustomers()
         {
-
             return dataContext.customers;
-
         }
 
         public Customer CustomerById(int _id)

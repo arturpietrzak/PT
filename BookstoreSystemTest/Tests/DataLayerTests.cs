@@ -5,25 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using BookstoreSystem.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BookstoreSystemTest.Generators;
 
-
-namespace BookstoreSystem.UnitTests
+namespace BookstoreSystemTest
 {
     [TestClass]
-    public class SpecifiedGeneratorTest
+    public class DataLayerTests
 
     {
-        private DataContext dataContext = new DataContext();
-        private DataRepository repository = new DataRepository();
+        private DataContext dataContext;
+        private DataRepository repository;
 
+        [TestInitialize]
+        public void Startup()
+        { 
+            dataContext = new DataContext();
+            repository = new DataRepository();
+        }
 
-       /* public void NotNull()
-        {
-            Assert.IsNotNull(repository.AllBooks);
-            Assert.IsNotNull(value: repository.AllCustomers);
-            Assert.IsNotNull(value :repository.AllStates);
-
-        }*/
        [TestMethod]
         public void Equal()
         {
