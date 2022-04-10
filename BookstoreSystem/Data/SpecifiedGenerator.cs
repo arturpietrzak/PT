@@ -26,7 +26,14 @@ namespace BookstoreSystem.Data
             data.books.Add(book2);
             data.books.Add(book3);
 
-            //State state = new State(book1, )
+            State state1 = new State(book1, 3);
+            State state2 = new State(book2, 5);
+            State state3 = new State(book3, 6);
+
+            data.states.Add(state1);
+            data.states.Add(state2);
+            data.states.Add(state3);
+
         }
     }
 }

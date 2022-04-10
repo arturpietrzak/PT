@@ -61,7 +61,9 @@ namespace BookstoreSystem.Data
         // for Customer
         public List<Customer> AllCustomers()
         {
+
             return dataContext.customers;
+
         }
 
         public Customer CustomerById(int _id)
