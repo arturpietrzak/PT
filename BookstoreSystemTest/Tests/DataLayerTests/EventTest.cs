@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookstoreSystemTest.Generators;
 using BookstoreSystem.Data.API;
 
-namespace BookstoreSystemTest.Tests.DataLayerTests
+namespace BookstoreSystemTest.DataLayerTests
 {
     [TestClass]
     public class EventTest

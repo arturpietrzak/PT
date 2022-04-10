@@ -72,10 +72,7 @@ namespace BookstoreSystem.Data
         public Customer CustomerById(int _id)
         {
             Customer foundCustomer = dataContext.customers.FirstOrDefault(c => c.Id == _id);
-            if (foundCustomer == null)
-            {
-                throw new Exception("No customer with id = " + _id + " in the data context");
-            }
+
             return foundCustomer;
         }
 

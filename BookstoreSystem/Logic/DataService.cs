@@ -1,8 +1,7 @@
 ﻿using BookstoreSystem.Data;
-using BookstoreSystem.Logic;
 using BookstoreSystem.Logic.API;
 
-namespace BookstoreSystem.logic
+namespace BookstoreSystem.Logic
 {
     public class DataService
     {
@@ -34,7 +33,15 @@ namespace BookstoreSystem.logic
         }
         public void RemoveBook(int id) { 
             this.connection.RemoveBook(id);
-        }  
+        }
+        public int GetBookStockById(int id)
+        {
+            return this.connection.GetBookStockById(id);
+        }
+        public void SetBookStockById(int id, int amount)
+        {
+             this.connection.SetBookStockById(id, amount);
+        }
 
         // Customer  
         public void AddCustomer(int id, String name, String surname)
@@ -43,7 +50,7 @@ namespace BookstoreSystem.logic
         }
         public List<Customer> GetAllCustomers()
         {
-            return this.GetAllCustomers();
+            return this.connection.GetAllCustomers();
         }
         public List<Event> GetAllCustomerEvents(int id)
         {
@@ -55,7 +62,7 @@ namespace BookstoreSystem.logic
         }
         public void RemoveCustomer(int id)
         {
-            this.RemoveCustomer(id);
+            this.connection.RemoveCustomer(id);
         }
 
         // Actions  

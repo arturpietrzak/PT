@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookstoreSystemTest.Generators;
 using BookstoreSystem.Data.API;
 
-namespace BookstoreSystemTest.Tests.DataLayerTests
+namespace BookstoreSystemTest.DataLayerTests
 {
     [TestClass]
     public class CustomerTest
@@ -40,10 +40,10 @@ namespace BookstoreSystemTest.Tests.DataLayerTests
 
             // deleted data should not be accessible
             dataLayer.DeleteCustomer(dataLayer.CustomerById(5));
-            Assert.ThrowsException<Exception>(() => dataLayer.CustomerById(5).Id);
+            Assert.ThrowsException<NullReferenceException>(() => dataLayer.CustomerById(5).Id);
 
             dataLayer.DeleteCustomer(dataLayer.CustomerById(3));
-            Assert.ThrowsException<Exception>(() => dataLayer.CustomerById(3).Name);
+            Assert.ThrowsException<NullReferenceException>(() => dataLayer.CustomerById(3).Name);
         }
 
         [TestMethod]

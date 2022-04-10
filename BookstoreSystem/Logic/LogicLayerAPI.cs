@@ -22,6 +22,8 @@ namespace BookstoreSystem.Logic.API
         public abstract List<Event> GetAllBookEvents(Book book);
         public abstract Book GetBookById(int id);
         public abstract void RemoveBook(int id);
+        public abstract int GetBookStockById(int id);
+        public abstract void SetBookStockById(int id, int amount);
 
         // Customer  
         public abstract void AddCustomer(int id, String name, String surname);
@@ -96,9 +98,26 @@ namespace BookstoreSystem.Logic.API
                 {
                     throw new Exception("There is no book with id = " + id);
                 }
-                dataLayer.GetStateByBook(foundBook).Amount = 0;
-                dataLayer.GetStateByBook(foundBook).Book = null;
+                dataLayer.DeleteState(dataLayer.GetStateByBook(foundBook));
                 dataLayer.DeleteBook(foundBook);
+            }
+            public override int GetBookStockById(int id)
+            {
+                Book foundBook = dataLayer.BookById(id);
+                if (foundBook == null)
+                {
+                    throw new Exception("There is no book with id = " + id);
+                }
+                return dataLayer.GetStateByBook(foundBook).Amount;
+            }
+            public override void SetBookStockById(int id, int amount)
+            {
+                Book foundBook = dataLayer.BookById(id);
+                if (foundBook == null)
+                {
+                    throw new Exception("There is no book with id = " + id);
+                }
+                dataLayer.GetStateByBook(foundBook).Amount = amount;
             }
 
             // Customer  
@@ -157,8 +176,11 @@ namespace BookstoreSystem.Logic.API
                 {
                     throw new Exception("There is no book with id = " + bookId + ". Cannot sell book. ");
                 }
-
-                if (dataLayer.GetStateByBook(foundBook) == null)
+                else if (dataLayer.GetStateByBook(foundBook) != null && dataLayer.GetStateByBook(foundBook).Amount < 1)
+                {
+                    throw new Exception("There is no book in stock. Cannot sell book. ");
+                }
+                else if (dataLayer.GetStateByBook(foundBook) == null)
                 {
                     dataLayer.AddEvent(new EventReturn(null, dataLayer.CustomerById(customerId)));
                 }
