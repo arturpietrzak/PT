@@ -1,12 +1,13 @@
 ﻿using BookstoreSystem.Data;
+using BookstoreSystem.Data.API;
 
 namespace BookstoreSystemTest.Generators
 {
-    public class DataGenerator : IGenerator
+    public class DataLayerGenerator : IGenerator
     {
-        public DataContext Generate()
+        public DataLayerAbstractAPI Generate()
         {
-            DataContext context = new DataContext();
+            DataLayerAbstractAPI layer = DataLayerAbstractAPI.CreateSimpleAPIImplementation();
 
             // add books
             Book b0 = new Book(0, "Winnie-the-Pooh", 120, 9.99, Genre.adventure);
@@ -21,14 +22,17 @@ namespace BookstoreSystemTest.Generators
             Book b9 = new Book(9, "Harry Potter and the Deathly Hallows", 470, 23.20, Genre.fantasy);
             Book b10 = new Book(10, "Twilight", 380, 10.30, Genre.fantasy);
 
-            context.books.Add(b0);
-            context.books.Add(b1);
-            context.books.Add(b2);
-            context.books.Add(b3);
-            context.books.Add(b4);
-            context.books.Add(b5);
-            context.books.Add(b6);
-            context.books.Add(b7);
+            layer.AddBook(b0);
+            layer.AddBook(b1);
+            layer.AddBook(b2);
+            layer.AddBook(b3);
+            layer.AddBook(b4);
+            layer.AddBook(b5);
+            layer.AddBook(b6);
+            layer.AddBook(b7);
+            layer.AddBook(b8);
+            layer.AddBook(b9);
+            layer.AddBook(b10);
 
             // add clients
             Customer c0 = new Customer(0, "Jan", "Kowalski");
@@ -40,14 +44,14 @@ namespace BookstoreSystemTest.Generators
             Customer c6 = new Customer(6, "Jack", "Brown");
             Customer c7 = new Customer(7, "Johny", "Johnson");
 
-            context.customers.Add(c0);
-            context.customers.Add(c1);
-            context.customers.Add(c2);
-            context.customers.Add(c3);
-            context.customers.Add(c4);
-            context.customers.Add(c5);
-            context.customers.Add(c6);
-            context.customers.Add(c7);
+            layer.AddCustomer(c0);
+            layer.AddCustomer(c1);
+            layer.AddCustomer(c2);
+            layer.AddCustomer(c3);
+            layer.AddCustomer(c4);
+            layer.AddCustomer(c5);
+            layer.AddCustomer(c6);
+            layer.AddCustomer(c7);
 
             // add states
             State s0 = new State(b0, 0);
@@ -60,15 +64,15 @@ namespace BookstoreSystemTest.Generators
             State s7 = new State(b9, 5);
             State s8 = new State(b10, 6);
 
-            context.states.Add(s0);
-            context.states.Add(s1);
-            context.states.Add(s2);
-            context.states.Add(s3);
-            context.states.Add(s4);
-            context.states.Add(s5);
-            context.states.Add(s6);
-            context.states.Add(s7);
-            context.states.Add(s8);
+            layer.AddState(s0);
+            layer.AddState(s1);
+            layer.AddState(s2);
+            layer.AddState(s3);
+            layer.AddState(s4);
+            layer.AddState(s5);
+            layer.AddState(s6);
+            layer.AddState(s7);
+            layer.AddState(s8);
 
             // add events
             Event e0 = new EventPurchase(s5, c4);
@@ -78,15 +82,15 @@ namespace BookstoreSystemTest.Generators
             Event e4 = new EventReturn(s0, c1);
             Event e5 = new EventPurchase(s4, c0);
 
-            context.events.Add(e0);
-            context.events.Add(e1);
-            context.events.Add(e2);
-            context.events.Add(e3);
-            context.events.Add(e4);
-            context.events.Add(e5);
+            layer.AddEvent(e0);
+            layer.AddEvent(e1);
+            layer.AddEvent(e2);
+            layer.AddEvent(e3);
+            layer.AddEvent(e4);
+            layer.AddEvent(e5);
 
             // return created DataContext
-            return context;
+            return layer;
         }
     }
 }

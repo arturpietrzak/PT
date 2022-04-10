@@ -120,7 +120,7 @@ namespace BookstoreSystem.Data
             {
                 throw new Exception("Event is already in the data context");
             }
-            dataContext.events.Remove(_event);
+            dataContext.events.Add(_event);
         }
 
         public void DeleteEvent(Event _event)

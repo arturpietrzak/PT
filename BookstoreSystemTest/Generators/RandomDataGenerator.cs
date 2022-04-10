@@ -1,22 +1,23 @@
 ﻿using BookstoreSystem.Data;
 using System;
 using System.Collections.Generic;
+using BookstoreSystem.Data.API;
 
 namespace BookstoreSystemTest.Generators
 {
     public class RandomDataGenerator : IGenerator
     {
         private Random rnd = new Random();
-        public DataContext Generate()
+        public DataLayerAbstractAPI Generate()
         {
-            DataContext context = RandomContent();
+            DataLayerAbstractAPI layer = RandomContent();
 
-            return context;
+            return layer;
         }
 
-        private DataContext RandomContent()
+        private DataLayerAbstractAPI RandomContent()
         {
-            DataContext context = new DataContext();
+            DataLayerAbstractAPI layer = DataLayerAbstractAPI.CreateSimpleAPIImplementation();
 
             // random books
             string[] firstPart =
@@ -46,7 +47,7 @@ namespace BookstoreSystemTest.Generators
             for (int i = 0; i < 10; i++)
             {
                 string title = firstPart[rnd.Next(0, 4)] + secondPart[rnd.Next(0, 4)] + thirPart[rnd.Next(0, 4)];
-                context.books.Add(new Book(i, title, rnd.Next(1, 500), Convert.ToDouble(rnd.Next(1, 5000)) / 100, Genre.thriller));
+                layer.AddBook(new Book(i, title, rnd.Next(1, 500), Convert.ToDouble(rnd.Next(1, 5000)) / 100, Genre.thriller));
             }
 
             // random clients
@@ -100,7 +101,7 @@ namespace BookstoreSystemTest.Generators
 
             for (int i = 0; i < 10; i++)
             {
-                context.customers.Add(new Customer(i, firstNames[rnd.Next(0, 20)], lastNames[rnd.Next(0, 20)]));
+                layer.AddCustomer(new Customer(i, firstNames[rnd.Next(0, 20)], lastNames[rnd.Next(0, 20)]));
             }
 
             // random states
@@ -111,7 +112,7 @@ namespace BookstoreSystemTest.Generators
                 {
                     continue;
                 }
-                context.states.Add(new State(context.books[i], rnd.Next(0, 100)));
+                layer.AddState(new State(layer.AllBooks()[i], rnd.Next(0, 100)));
             }
 
             // random events
@@ -120,21 +121,21 @@ namespace BookstoreSystemTest.Generators
                 // 50 / 50 chance on purchase of return event
                 if (rnd.Next(0, 2) == 1)
                 {
-                    context.events.Add(new EventPurchase
-                        (context.states[rnd.Next(0, context.states.Count)],
-                        context.customers[rnd.Next(0, context.customers.Count)])
+                    layer.AddEvent(new EventPurchase
+                        (layer.AllStates()[rnd.Next(0, layer.AllStates().Count)],
+                        layer.AllCustomers()[rnd.Next(0, layer.AllCustomers().Count)])
                         );   
                 } 
                 else
                 {
-                    context.events.Add(new EventReturn
-                        (context.states[rnd.Next(0, context.states.Count)],
-                        context.customers[rnd.Next(0, context.customers.Count)])
+                    layer.AddEvent(new EventReturn
+                        (layer.AllStates()[rnd.Next(0, layer.AllStates().Count)],
+                        layer.AllCustomers()[rnd.Next(0, layer.AllCustomers().Count)])
                         );
                 }
             }
 
-            return context;
+            return layer;
         }
     }
 }
