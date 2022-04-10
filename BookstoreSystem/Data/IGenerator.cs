@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public class EmptyGenerator: InterfaceGenerator
+    public interface IGenerator
     {
-        public void Generate(DataContext data)
-        {
+        DataContext Generate();
 
-        }
     }
 }

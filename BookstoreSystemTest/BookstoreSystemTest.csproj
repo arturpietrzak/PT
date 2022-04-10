@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,15 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataLayerTests\**" />
+    <Compile Remove="LogicLayerTests\**" />
+    <EmbeddedResource Remove="DataLayerTests\**" />
+    <EmbeddedResource Remove="LogicLayerTests\**" />
+    <None Remove="DataLayerTests\**" />
+    <None Remove="LogicLayerTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.9" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.9" />
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataLayerTests\" />
-    <Folder Include="LogicLayerTests\" />
+    <ProjectReference Include="..\BookstoreSystem\BookstoreSystem.csproj" />
   </ItemGroup>
 
 </Project>

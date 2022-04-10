@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public interface InterfaceGenerator
+    public enum Genre
     {
-        void Generate(DataContext data);
-
+        fantasy,
+        romance,
+        scifi,
+        poetry,
+        adventure,
+        guide,
+        thriller
     }
 }
