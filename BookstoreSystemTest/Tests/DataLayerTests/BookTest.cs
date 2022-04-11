@@ -24,6 +24,19 @@ namespace BookstoreSystemTest.DataLayerTests
         }
 
         [TestMethod]
+
+        public void TestGetBook()
+        {
+            Book book1 = new Book(321, "test book", 300, 20.99, Genre.romance);
+
+            Assert.AreEqual(book1.Id, 321);
+            Assert.AreEqual(book1.Name, "test book");
+            Assert.AreEqual(book1.Pages, 300);
+            Assert.AreEqual(book1.Price, 20.99);
+            Assert.AreEqual(book1.Genre, Genre.romance);
+        }
+
+        [TestMethod]
         public void TestBookAddition()
         {
             dataLayer = generator.Generate();

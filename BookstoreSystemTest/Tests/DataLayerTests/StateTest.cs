@@ -24,6 +24,16 @@ namespace BookstoreSystemTest.DataLayerTests
         }
 
         [TestMethod]
+        public void TestGetState()
+        {
+            Book book1 = new Book(100, "Test book", 300, 10.99, Genre.poetry);
+            State state1 = new State(book1, 1000);
+
+            Assert.AreEqual(state1.Book, book1);
+            Assert.AreEqual(state1.Amount, 1000);
+        }
+
+        [TestMethod]
         public void TestAddingState()
         {
             dataLayer = generator.Generate();

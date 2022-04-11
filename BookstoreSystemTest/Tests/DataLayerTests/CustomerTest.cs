@@ -24,6 +24,17 @@ namespace BookstoreSystemTest.DataLayerTests
         }
 
         [TestMethod]
+        public void TestGetCustomer()
+        {
+            Customer customer1 = new Customer(120, "Carl", "Monday");
+
+            Assert.AreEqual(customer1.Id, 120);
+            Assert.AreEqual(customer1.Name, "Carl");
+            Assert.AreEqual(customer1.Surname, "Monday");
+
+        }
+
+        [TestMethod]
         public void TestCustomerAddition()
         {
             dataLayer = generator.Generate();
