@@ -1,6 +1,5 @@
-﻿using BookstoreSystem.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using BookstoreSystem;
 using BookstoreSystem.Data.API;
 
 namespace BookstoreSystemTest.Generators

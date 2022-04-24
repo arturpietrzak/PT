@@ -1,5 +1,5 @@
-﻿using BookstoreSystem.Data;
-using BookstoreSystem.Logic.API;
+﻿using BookstoreSystem.Logic.API;
+using BookstoreSystem.Data.API;
 
 namespace BookstoreSystem.Logic
 {

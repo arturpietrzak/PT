@@ -1,5 +1,5 @@
 ﻿using System;
-using BookstoreSystem.Data;
+using BookstoreSystem;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookstoreSystemTest.Generators;
 using BookstoreSystem.Data.API;

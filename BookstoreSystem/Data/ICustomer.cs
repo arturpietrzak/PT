@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BookstoreSystem.Data
+﻿namespace BookstoreSystem.Data.API
 {
     public interface ICustomer
     {

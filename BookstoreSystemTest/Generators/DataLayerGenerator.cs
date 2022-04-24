@@ -1,4 +1,4 @@
-﻿using BookstoreSystem.Data;
+﻿using BookstoreSystem;
 using BookstoreSystem.Data.API;
 
 namespace BookstoreSystemTest.Generators
@@ -89,7 +89,7 @@ namespace BookstoreSystemTest.Generators
             layer.AddEvent(e4);
             layer.AddEvent(e5);
 
-            // return created DataContext
+            // return created layer
             return layer;
         }
     }

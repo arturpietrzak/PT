@@ -33,6 +33,10 @@ namespace BookstoreSystem.Data.API
             return new SimpleAPIImplementation();
         }
 
+        public static DataLayerAbstractAPI CreateSimpleAPIImplementation(IGenerator data)
+        {
+            return data.Generate();
+        }
 
         private class SimpleAPIImplementation : DataLayerAbstractAPI
         {

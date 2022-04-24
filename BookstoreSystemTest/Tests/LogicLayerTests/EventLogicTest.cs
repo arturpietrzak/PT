@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BookstoreSystem;
 using BookstoreSystem.Logic;
 using BookstoreSystem.Logic.API;
-using BookstoreSystem.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BookstoreSystemTest.Logic
