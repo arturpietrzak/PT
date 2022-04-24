@@ -18,16 +18,16 @@ namespace BookstoreSystem.Logic
         {
             this.connection.AddBook(id, name, pages, price, genre, amount);
         }
-        public List<Book> GetAllBooks()
+        public List<IBook> GetAllBooks()
         {
             return this.connection.GetAllBooks();
         }
-        public List<Event> GetAllBookEvents(int id)
+        public List<IEvent> GetAllBookEvents(int id)
         {
-            Book book = GetBookById(id);
+            IBook book = GetBookById(id);
             return this.connection.GetAllBookEvents(book);
         }
-        public Book GetBookById(int id)
+        public IBook GetBookById(int id)
         {
             return this.connection.GetBookById(id);
         }
@@ -48,15 +48,15 @@ namespace BookstoreSystem.Logic
         {
             this.connection.AddCustomer(id, name, surname); 
         }
-        public List<Customer> GetAllCustomers()
+        public List<ICustomer> GetAllCustomers()
         {
             return this.connection.GetAllCustomers();
         }
-        public List<Event> GetAllCustomerEvents(int id)
+        public List<IEvent> GetAllCustomerEvents(int id)
         {
             return this.connection.GetAllCustomerEvents(GetCustomerById(id));
         }
-        public Customer GetCustomerById(int id)
+        public ICustomer GetCustomerById(int id)
         {
             return this.connection.GetCustomerById(id);
         }

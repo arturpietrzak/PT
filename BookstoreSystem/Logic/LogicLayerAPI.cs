@@ -18,18 +18,18 @@ namespace BookstoreSystem.Logic.API
         // Book
         public abstract void AddBook(int id, string name, int pages,
             double price, Genre genre, int amount = 0);
-        public abstract List<Book> GetAllBooks();
-        public abstract List<Event> GetAllBookEvents(Book book);
-        public abstract Book GetBookById(int id);
+        public abstract List<IBook> GetAllBooks();
+        public abstract List<IEvent> GetAllBookEvents(IBook book);
+        public abstract IBook GetBookById(int id);
         public abstract void RemoveBook(int id);
         public abstract int GetBookStockById(int id);
         public abstract void SetBookStockById(int id, int amount);
 
         // Customer  
         public abstract void AddCustomer(int id, String name, String surname);
-        public abstract List<Customer> GetAllCustomers();
-        public abstract List<Event> GetAllCustomerEvents(Customer customer);
-        public abstract Customer GetCustomerById(int id);
+        public abstract List<ICustomer> GetAllCustomers();
+        public abstract List<IEvent> GetAllCustomerEvents(ICustomer customer);
+        public abstract ICustomer GetCustomerById(int id);
         public abstract void RemoveCustomer(int id);
 
         // Actions  
@@ -50,30 +50,30 @@ namespace BookstoreSystem.Logic.API
             // Book
             public override void AddBook(int id, string name, int pages, double price, Genre genre, int amount = 0)
             {
-                Book foundBook = dataLayer.BookById(id);
+                IBook foundBook = dataLayer.BookById(id);
                 if (foundBook != null)
                 {
                     throw new Exception("There is already book with id = " + id);
                 }
-                Book newBook = new Book(id, name, pages, price, genre);
+                IBook newBook = new Book(id, name, pages, price, genre);
                 dataLayer.AddBook(newBook);
                 dataLayer.AddState(new State(newBook, amount));
             }
-            public override List<Book> GetAllBooks()
+            public override List<IBook> GetAllBooks()
             {
                 return dataLayer.AllBooks();
             }
-            public override List<Event> GetAllBookEvents(Book book)
+            public override List<IEvent> GetAllBookEvents(IBook book)
             {
-                Book foundBook = dataLayer.BookById(book.Id);
+                IBook foundBook = dataLayer.BookById(book.Id);
                 if (foundBook == null)
                 {
                     throw new Exception("There is no book with id = " + book.Id);
                 }
 
-                List<Event> events = new List<Event>();
+                List<IEvent> events = new List<IEvent>();
 
-                foreach (Event e in dataLayer.AllEvents())
+                foreach (IEvent e in dataLayer.AllEvents())
                 {
                     if (e.State.Book.Id == book.Id)
                     {
@@ -82,9 +82,9 @@ namespace BookstoreSystem.Logic.API
                 }
                 return events;
             }
-            public override Book GetBookById(int id)
+            public override IBook GetBookById(int id)
             {
-                Book foundBook = dataLayer.BookById(id);
+                IBook foundBook = dataLayer.BookById(id);
                 if (foundBook == null)
                 {
                     throw new Exception("There is no book with id = " + id);
@@ -93,7 +93,7 @@ namespace BookstoreSystem.Logic.API
             }
             public override void RemoveBook(int id)
             {
-                Book foundBook = dataLayer.BookById(id);
+                IBook foundBook = dataLayer.BookById(id);
                 if (foundBook == null)
                 {
                     throw new Exception("There is no book with id = " + id);
@@ -103,7 +103,7 @@ namespace BookstoreSystem.Logic.API
             }
             public override int GetBookStockById(int id)
             {
-                Book foundBook = dataLayer.BookById(id);
+                IBook foundBook = dataLayer.BookById(id);
                 if (foundBook == null)
                 {
                     throw new Exception("There is no book with id = " + id);
@@ -112,7 +112,7 @@ namespace BookstoreSystem.Logic.API
             }
             public override void SetBookStockById(int id, int amount)
             {
-                Book foundBook = dataLayer.BookById(id);
+                IBook foundBook = dataLayer.BookById(id);
                 if (foundBook == null)
                 {
                     throw new Exception("There is no book with id = " + id);
@@ -123,29 +123,29 @@ namespace BookstoreSystem.Logic.API
             // Customer  
             public override void AddCustomer(int id, string name, string surname)
             {
-                Customer foundCustomer = dataLayer.CustomerById(id);
+                ICustomer foundCustomer = dataLayer.CustomerById(id);
                 if (foundCustomer != null)
                 {
                     throw new Exception("There is already customer with id = " + id);
                 }
-                Customer customer = new Customer(id, name, surname);
+                ICustomer customer = new Customer(id, name, surname);
                 dataLayer.AddCustomer(customer);
             }
-            public override List<Customer> GetAllCustomers()
+            public override List<ICustomer> GetAllCustomers()
             {
                 return dataLayer.AllCustomers();
             }
-            public override List<Event> GetAllCustomerEvents(Customer customer)
+            public override List<IEvent> GetAllCustomerEvents(ICustomer customer)
             {
-                Customer foundCustomer = dataLayer.CustomerById(customer.Id);
+                ICustomer foundCustomer = dataLayer.CustomerById(customer.Id);
                 if (foundCustomer == null)
                 {
                     throw new Exception("There is no customer with id = " + customer.Id);
                 }
 
-                List<Event> events = new List<Event>();
+                List<IEvent> events = new List<IEvent>();
 
-                foreach (Event e in dataLayer.AllEvents())
+                foreach (IEvent e in dataLayer.AllEvents())
                 {
                     if (e.Customer.Id == customer.Id)
                     {
@@ -154,9 +154,9 @@ namespace BookstoreSystem.Logic.API
                 }
                 return events;
             }
-            public override Customer GetCustomerById(int id)
+            public override ICustomer GetCustomerById(int id)
             {
-                Customer foundCustomer = dataLayer.CustomerById(id);
+                ICustomer foundCustomer = dataLayer.CustomerById(id);
                 if (foundCustomer == null)
                 {
                     throw new Exception("There is no customer with id = " + id);
@@ -171,7 +171,7 @@ namespace BookstoreSystem.Logic.API
             // Actions
             public override void SellBook(int bookId, int customerId)
             {
-                Book foundBook = dataLayer.BookById(bookId);
+                IBook foundBook = dataLayer.BookById(bookId);
                 if (foundBook == null)
                 {
                     throw new Exception("There is no book with id = " + bookId + ". Cannot sell book. ");
@@ -193,7 +193,7 @@ namespace BookstoreSystem.Logic.API
             }
             public override void ReturnBook(int bookId, int customerId)
             {
-                Book foundBook = dataLayer.BookById(bookId);
+                IBook foundBook = dataLayer.BookById(bookId);
                 if (foundBook == null)
                 {
                     throw new Exception("There is no book with id = " + bookId + ". Cannot return book. ");

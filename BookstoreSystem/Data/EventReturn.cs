@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public class EventReturn : Event
+    internal class EventReturn : IEvent
     {
-        public EventReturn(State _state, Customer _customer) 
-            : base(_state, _customer)
-        { }
+        private IState state;
+        private ICustomer customer;
+        private DateTime eventDate;
+
+        public EventReturn(IState _state, ICustomer _client)
+        {
+            this.state = _state;
+            this.customer = _client;
+            this.eventDate = DateTime.Now;
+        }
+
+        public IState State { get { return this.state; } }
+        public ICustomer Customer { get { return this.customer; } }
+        public DateTime EventDate { get { return this.eventDate; } }
     }
 }

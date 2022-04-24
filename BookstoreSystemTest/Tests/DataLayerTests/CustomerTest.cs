@@ -26,7 +26,7 @@ namespace BookstoreSystemTest.DataLayerTests
         [TestMethod]
         public void TestGetCustomer()
         {
-            Customer customer1 = new Customer(120, "Carl", "Monday");
+            ICustomer customer1 = new TCustomer(120, "Carl", "Monday");
 
             Assert.AreEqual(customer1.Id, 120);
             Assert.AreEqual(customer1.Name, "Carl");
@@ -39,7 +39,7 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            dataLayer.AddCustomer(new Customer(141, "Andrei", "Deiu"));
+            dataLayer.AddCustomer(new TCustomer(141, "Andrei", "Deiu"));
             Assert.AreEqual(dataLayer.CustomerById(141).Name, "Andrei");
 
         }
@@ -62,7 +62,7 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            dataLayer.AddCustomer(new Customer(141, "Lionel", "Messi"));
+            dataLayer.AddCustomer(new TCustomer(141, "Lionel", "Messi"));
             Assert.AreEqual(dataLayer.CustomerById(141).Name, "Lionel");
 
             dataLayer.CustomerById(141).Name = "Krzysztof";
@@ -75,7 +75,7 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = randomGenerator.Generate();
 
-            dataLayer.AddCustomer(new Customer(514, "Jay", "Cutler"));
+            dataLayer.AddCustomer(new TCustomer(514, "Jay", "Cutler"));
             Assert.AreEqual(dataLayer.CustomerById(514).Surname, "Cutler");
         }
     }

@@ -47,7 +47,7 @@ namespace BookstoreSystemTest.Generators
             for (int i = 0; i < 10; i++)
             {
                 string title = firstPart[rnd.Next(0, 4)] + secondPart[rnd.Next(0, 4)] + thirPart[rnd.Next(0, 4)];
-                layer.AddBook(new Book(i, title, rnd.Next(1, 500), Convert.ToDouble(rnd.Next(1, 5000)) / 100, Genre.thriller));
+                layer.AddBook(new TBook(i, title, rnd.Next(1, 500), Convert.ToDouble(rnd.Next(1, 5000)) / 100, Genre.thriller));
             }
 
             // random clients
@@ -101,7 +101,7 @@ namespace BookstoreSystemTest.Generators
 
             for (int i = 0; i < 10; i++)
             {
-                layer.AddCustomer(new Customer(i, firstNames[rnd.Next(0, 20)], lastNames[rnd.Next(0, 20)]));
+                layer.AddCustomer(new TCustomer(i, firstNames[rnd.Next(0, 20)], lastNames[rnd.Next(0, 20)]));
             }
 
             // random states
@@ -112,7 +112,7 @@ namespace BookstoreSystemTest.Generators
                 {
                     continue;
                 }
-                layer.AddState(new State(layer.AllBooks()[i], rnd.Next(0, 100)));
+                layer.AddState(new TState(layer.AllBooks()[i], rnd.Next(0, 100)));
             }
 
             // random events
@@ -121,14 +121,14 @@ namespace BookstoreSystemTest.Generators
                 // 50 / 50 chance on purchase of return event
                 if (rnd.Next(0, 2) == 1)
                 {
-                    layer.AddEvent(new EventPurchase
+                    layer.AddEvent(new TEventPurchase
                         (layer.AllStates()[rnd.Next(0, layer.AllStates().Count)],
                         layer.AllCustomers()[rnd.Next(0, layer.AllCustomers().Count)])
                         );   
                 } 
                 else
                 {
-                    layer.AddEvent(new EventReturn
+                    layer.AddEvent(new TEventReturn
                         (layer.AllStates()[rnd.Next(0, layer.AllStates().Count)],
                         layer.AllCustomers()[rnd.Next(0, layer.AllCustomers().Count)])
                         );

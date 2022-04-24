@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BookstoreSystem.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookstoreSystemTest.Generators;
@@ -27,7 +23,7 @@ namespace BookstoreSystemTest.DataLayerTests
 
         public void TestGetBook()
         {
-            Book book1 = new Book(321, "test book", 300, 20.99, Genre.romance);
+            IBook book1 = new TBook(321, "test book", 300, 20.99, Genre.romance);
 
             Assert.AreEqual(book1.Id, 321);
             Assert.AreEqual(book1.Name, "test book");
@@ -41,13 +37,13 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            dataLayer.AddBook(new Book(321, "test book", 300, 20.99, Genre.romance));
+            dataLayer.AddBook(new TBook(321, "test book", 300, 20.99, Genre.romance));
             Assert.AreEqual(dataLayer.BookById(321).Name, "test book");
 
-            dataLayer.AddCustomer(new Customer(100, "Tom", "Platz"));
+            dataLayer.AddCustomer(new TCustomer(100, "Tom", "Platz"));
             Assert.AreEqual(dataLayer.CustomerById(100).Name, "Tom");
 
-            dataLayer.AddState(new State(dataLayer.BookById(321), 100));
+            dataLayer.AddState(new TState(dataLayer.BookById(321), 100));
             Assert.AreEqual(dataLayer.GetStateByBook(dataLayer.BookById(321)).Amount, 100);
         }
 
@@ -69,7 +65,7 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            Book b = new Book(321, "Test book", 100, 5.99, Genre.guide);
+            IBook b = new TBook(321, "Test book", 100, 5.99, Genre.guide);
             dataLayer.AddBook(b);
 
             Assert.AreEqual(dataLayer.BookById(321).Name, "Test book");
@@ -88,7 +84,7 @@ namespace BookstoreSystemTest.DataLayerTests
             Assert.ThrowsException<NullReferenceException>(() => dataLayer.BookById(5).Id);
 
             // check addition of data
-            dataLayer.AddBook(new Book(321, "test book", 300, 20.99, Genre.romance));
+            dataLayer.AddBook(new TBook(321, "test book", 300, 20.99, Genre.romance));
             Assert.AreEqual(dataLayer.BookById(321).Name, "test book");
 
             Assert.ThrowsException<Exception>(() => dataLayer.AddBook(dataLayer.BookById(321)));

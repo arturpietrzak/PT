@@ -28,15 +28,15 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            Book b = new Book(656, "test book", 100, 50.99, Genre.thriller);
-            Customer c = new Customer(100, "Test", "customer");
-            State s = new State(b, 3);
+            IBook b = new TBook(656, "test book", 100, 50.99, Genre.thriller);
+            ICustomer c = new TCustomer(100, "Test", "customer");
+            IState s = new TState(b, 3);
 
             dataLayer.AddBook(b);
             dataLayer.AddCustomer(c);
             dataLayer.AddState(s);
 
-            Event e = new EventPurchase(s, c);
+            IEvent e = new TEventPurchase(s, c);
             dataLayer.AddEvent(e);
             Assert.AreEqual(dataLayer.AllEvents()[6].Customer.Name, "Test");
             Assert.AreSame(dataLayer.AllEvents()[6].Customer, c);
@@ -48,15 +48,15 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            Book b = new Book(656, "test book", 100, 50.99, Genre.thriller);
-            Customer c = new Customer(100, "Test", "customer");
-            State s = new State(b, 3);
+            IBook b = new TBook(656, "test book", 100, 50.99, Genre.thriller);
+            ICustomer c = new TCustomer(100, "Test", "customer");
+            IState s = new TState(b, 3);
 
             dataLayer.AddBook(b);
             dataLayer.AddCustomer(c);
             dataLayer.AddState(s);
 
-            Event e = new EventPurchase(s, c);
+            IEvent e = new TEventPurchase(s, c);
             dataLayer.AddEvent(e);
             Assert.AreEqual(dataLayer.AllEvents()[6].Customer.Name, "Test");
             Assert.AreSame(dataLayer.AllEvents()[6].Customer, c);

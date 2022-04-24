@@ -26,8 +26,8 @@ namespace BookstoreSystemTest.DataLayerTests
         [TestMethod]
         public void TestGetState()
         {
-            Book book1 = new Book(100, "Test book", 300, 10.99, Genre.poetry);
-            State state1 = new State(book1, 1000);
+            IBook book1 = new TBook(100, "Test book", 300, 10.99, Genre.poetry);
+            IState state1 = new TState(book1, 1000);
 
             Assert.AreEqual(state1.Book, book1);
             Assert.AreEqual(state1.Amount, 1000);
@@ -38,8 +38,8 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            Book b = new Book(100, "Test book", 300, 10.99, Genre.poetry);
-            State s = new State(b, 1000);
+            IBook b = new TBook(100, "Test book", 300, 10.99, Genre.poetry);
+            IState s = new TState(b, 1000);
             dataLayer.AddState(s);
 
             Assert.AreEqual(dataLayer.GetStateByBook(b).Book, b);
@@ -60,8 +60,8 @@ namespace BookstoreSystemTest.DataLayerTests
         {
             dataLayer = generator.Generate();
 
-            Book b = new Book(100, "Test book", 300, 10.99, Genre.poetry);
-            State s = new State(b, 1000);
+            IBook b = new TBook(100, "Test book", 300, 10.99, Genre.poetry);
+            IState s = new TState(b, 1000);
             dataLayer.AddState(s);
             Assert.AreEqual(s.Amount, 1000);
             dataLayer.GetStateByBook(b).Amount = 30;

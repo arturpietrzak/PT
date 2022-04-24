@@ -10,17 +10,17 @@ namespace BookstoreSystemTest.Generators
             DataLayerAbstractAPI layer = DataLayerAbstractAPI.CreateSimpleAPIImplementation();
 
             // add books
-            Book b0 = new Book(0, "Winnie-the-Pooh", 120, 9.99, Genre.adventure);
-            Book b1 = new Book(1, "The lord of the rings", 300, 20.99, Genre.fantasy);
-            Book b2 = new Book(2, "Moby Dick", 180, 15.99, Genre.adventure);
-            Book b3 = new Book(3, "Harry Potter and the Philosopher's Stone", 300, 10.99, Genre.fantasy);
-            Book b4 = new Book(4, "Percy Jackson and the Lightning Thief ", 250, 25.99, Genre.fantasy);
-            Book b5 = new Book(5, "Sword of Destiny. The Witcher", 400, 25.99, Genre.fantasy);
-            Book b6 = new Book(6, "Metro 2033", 458, 18.99, Genre.scifi);
-            Book b7 = new Book(7, "The Call of Cthulhu", 30, 5.99, Genre.fantasy);
-            Book b8 = new Book(8, "Da Vinci Code", 360, 20.40, Genre.thriller);
-            Book b9 = new Book(9, "Harry Potter and the Deathly Hallows", 470, 23.20, Genre.fantasy);
-            Book b10 = new Book(10, "Twilight", 380, 10.30, Genre.fantasy);
+            IBook b0 = new TBook(0, "Winnie-the-Pooh", 120, 9.99, Genre.adventure);
+            IBook b1 = new TBook(1, "The lord of the rings", 300, 20.99, Genre.fantasy);
+            IBook b2 = new TBook(2, "Moby Dick", 180, 15.99, Genre.adventure);
+            IBook b3 = new TBook(3, "Harry Potter and the Philosopher's Stone", 300, 10.99, Genre.fantasy);
+            IBook b4 = new TBook(4, "Percy Jackson and the Lightning Thief ", 250, 25.99, Genre.fantasy);
+            IBook b5 = new TBook(5, "Sword of Destiny. The Witcher", 400, 25.99, Genre.fantasy);
+            IBook b6 = new TBook(6, "Metro 2033", 458, 18.99, Genre.scifi);
+            IBook b7 = new TBook(7, "The Call of Cthulhu", 30, 5.99, Genre.fantasy);
+            IBook b8 = new TBook(8, "Da Vinci Code", 360, 20.40, Genre.thriller);
+            IBook b9 = new TBook(9, "Harry Potter and the Deathly Hallows", 470, 23.20, Genre.fantasy);
+            IBook b10 = new TBook(10, "Twilight", 380, 10.30, Genre.fantasy);
 
             layer.AddBook(b0);
             layer.AddBook(b1);
@@ -35,14 +35,14 @@ namespace BookstoreSystemTest.Generators
             layer.AddBook(b10);
 
             // add clients
-            Customer c0 = new Customer(0, "Jan", "Kowalski");
-            Customer c1 = new Customer(1, "Stefan", "Urbanski");
-            Customer c2 = new Customer(2, "Bartosz", "Topolski");
-            Customer c3 = new Customer(3, "Piotr", "Adamczyk");
-            Customer c4 = new Customer(4, "Jan", "Sienkiewicz");
-            Customer c5 = new Customer(5, "John", "Smith");
-            Customer c6 = new Customer(6, "Jack", "Brown");
-            Customer c7 = new Customer(7, "Johny", "Johnson");
+            ICustomer c0 = new TCustomer(0, "Jan", "Kowalski");
+            ICustomer c1 = new TCustomer(1, "Stefan", "Urbanski");
+            ICustomer c2 = new TCustomer(2, "Bartosz", "Topolski");
+            ICustomer c3 = new TCustomer(3, "Piotr", "Adamczyk");
+            ICustomer c4 = new TCustomer(4, "Jan", "Sienkiewicz");
+            ICustomer c5 = new TCustomer(5, "John", "Smith");
+            ICustomer c6 = new TCustomer(6, "Jack", "Brown");
+            ICustomer c7 = new TCustomer(7, "Johny", "Johnson");
 
             layer.AddCustomer(c0);
             layer.AddCustomer(c1);
@@ -54,15 +54,15 @@ namespace BookstoreSystemTest.Generators
             layer.AddCustomer(c7);
 
             // add states
-            State s0 = new State(b0, 0);
-            State s1 = new State(b1, 3);
-            State s2 = new State(b2, 1);
-            State s3 = new State(b3, 456);
-            State s4 = new State(b4, 871);
-            State s5 = new State(b5, 72);
-            State s6 = new State(b8, 3);
-            State s7 = new State(b9, 5);
-            State s8 = new State(b10, 6);
+            IState s0 = new TState(b0, 0);
+            IState s1 = new TState(b1, 3);
+            IState s2 = new TState(b2, 1);
+            IState s3 = new TState(b3, 456);
+            IState s4 = new TState(b4, 871);
+            IState s5 = new TState(b5, 72);
+            IState s6 = new TState(b8, 3);
+            IState s7 = new TState(b9, 5);
+            IState s8 = new TState(b10, 6);
 
             layer.AddState(s0);
             layer.AddState(s1);
@@ -75,12 +75,12 @@ namespace BookstoreSystemTest.Generators
             layer.AddState(s8);
 
             // add events
-            Event e0 = new EventPurchase(s5, c4);
-            Event e1 = new EventPurchase(s2, c4);
-            Event e2 = new EventReturn(s3, c4);
-            Event e3 = new EventPurchase(s4, c4);
-            Event e4 = new EventReturn(s0, c1);
-            Event e5 = new EventPurchase(s4, c0);
+            IEvent e0 = new TEventPurchase(s5, c4);
+            IEvent e1 = new TEventPurchase(s2, c4);
+            IEvent e2 = new TEventReturn(s3, c4);
+            IEvent e3 = new TEventPurchase(s4, c4);
+            IEvent e4 = new TEventReturn(s0, c1);
+            IEvent e5 = new TEventPurchase(s4, c0);
 
             layer.AddEvent(e0);
             layer.AddEvent(e1);

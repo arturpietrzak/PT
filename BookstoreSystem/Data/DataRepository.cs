@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public class DataRepository
+    internal class DataRepository
     {
         private DataContext dataContext;
 
@@ -23,19 +23,19 @@ namespace BookstoreSystem.Data
         }
 
         // for Book
-        public List<Book> AllBooks()
+        public List<IBook> AllBooks()
         {
             return dataContext.books;
         }
 
-        public Book BookById(int _id)
+        public IBook BookById(int _id)
         {
-            Book foundBook = dataContext.books.FirstOrDefault(b => b.Id == _id);
+            IBook foundBook = dataContext.books.FirstOrDefault(b => b.Id == _id);
 
             return foundBook;
         }
 
-        public void AddBook(Book book)
+        public void AddBook(IBook book)
         {
             // check if the book is null or it is already in the data context
             if (book == null)
@@ -49,7 +49,7 @@ namespace BookstoreSystem.Data
             dataContext.books.Add(book);
         }
 
-        public void DeleteBook(Book book)
+        public void DeleteBook(IBook book)
         {
             // check if the book is null or it is not in the data context
             if (book == null)
@@ -64,19 +64,19 @@ namespace BookstoreSystem.Data
         }
 
         // for Customer
-        public List<Customer> AllCustomers()
+        public List<ICustomer> AllCustomers()
         {
             return dataContext.customers;
         }
 
-        public Customer CustomerById(int _id)
+        public ICustomer CustomerById(int _id)
         {
-            Customer foundCustomer = dataContext.customers.FirstOrDefault(c => c.Id == _id);
+            ICustomer foundCustomer = dataContext.customers.FirstOrDefault(c => c.Id == _id);
 
             return foundCustomer;
         }
 
-        public void AddCustomer (Customer customer)
+        public void AddCustomer (ICustomer customer)
         {
             // check if the customer is null or he is already in the data context
             if (customer == null)
@@ -90,7 +90,7 @@ namespace BookstoreSystem.Data
             dataContext.customers.Add(customer);
         }
 
-        public void DeleteCustomer(Customer customer)
+        public void DeleteCustomer(ICustomer customer)
         {
             // check if the customer is null or he is not in the data context
             if (customer == null)
@@ -105,12 +105,12 @@ namespace BookstoreSystem.Data
         }
 
         // for Events
-        public List<Event> AllEvents()
+        public List<IEvent> AllEvents()
         {
             return dataContext.events;
         }
 
-        public void AddEvent(Event _event)
+        public void AddEvent(IEvent _event)
         {
             // check if event is already in the data context
             if (dataContext.events.Contains(_event))
@@ -120,7 +120,7 @@ namespace BookstoreSystem.Data
             dataContext.events.Add(_event);
         }
 
-        public void DeleteEvent(Event _event)
+        public void DeleteEvent(IEvent _event)
         {
             // check if event is not in the data context
             if (!dataContext.events.Contains(_event))
@@ -130,17 +130,17 @@ namespace BookstoreSystem.Data
         }
 
         // for States
-        public List<State> AllStates()
+        public List<IState> AllStates()
         {
             return dataContext.states;
         }
 
-        public State GetStateByBook(Book book)
+        public IState GetStateByBook(IBook book)
         {
             return dataContext.states.FirstOrDefault(s => s.Book.Id == book.Id);
         }
 
-        public void AddState(State state)
+        public void AddState(IState state)
         {
             // check if state is already in the data context
             if (dataContext.states.Contains(state))
@@ -150,7 +150,7 @@ namespace BookstoreSystem.Data
             dataContext.states.Add(state);
         }
 
-        public void DeleteState(State state)
+        public void DeleteState(IState state)
         {
             if (!dataContext.states.Contains(state))
             {

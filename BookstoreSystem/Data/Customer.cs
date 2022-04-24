@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public class Customer
+    internal class Customer : ICustomer
     {
         private int id;
         private String name;
@@ -16,9 +20,10 @@ namespace BookstoreSystem.Data
         }
 
         public int Id { get { return id; } }
-        public String Name { 
-            get { return name; } 
-            set { name = value; } 
+        public String Name
+        {
+            get { return name; }
+            set { name = value; }
         }
         public String Surname
         {
@@ -26,6 +31,8 @@ namespace BookstoreSystem.Data
             set { surname = value; }
         }
 
+
+        // override Equals and GetHashCode for easier comparison in repository
         public override bool Equals(object? obj)
         {
             return obj is Customer customer &&
@@ -36,9 +43,5 @@ namespace BookstoreSystem.Data
         {
             return HashCode.Combine(id);
         }
-
-
-        // override Equals and GetHashCode for easier comparison in repository
-
     }
 }

@@ -8,21 +8,21 @@ namespace BookstoreSystem.Data.API
 {
     public abstract class DataLayerAbstractAPI
     {
-        public abstract List<Book> AllBooks();
-        public abstract Book BookById(int _id);
-        public abstract void AddBook(Book book);
-        public abstract void DeleteBook(Book book);
-        public abstract List<Customer> AllCustomers();
-        public abstract Customer CustomerById(int _id);
-        public abstract void AddCustomer(Customer customer);
-        public abstract void DeleteCustomer(Customer customer);
-        public abstract List<Event> AllEvents();
-        public abstract void AddEvent(Event _event);
-        public abstract void DeleteEvent(Event _event);
-        public abstract List<State> AllStates();
-        public abstract State GetStateByBook(Book book);
-        public abstract void AddState(State state);
-        public abstract void DeleteState(State state);
+        public abstract List<IBook> AllBooks();
+        public abstract IBook BookById(int _id);
+        public abstract void AddBook(IBook book);
+        public abstract void DeleteBook(IBook book);
+        public abstract List<ICustomer> AllCustomers();
+        public abstract ICustomer CustomerById(int _id);
+        public abstract void AddCustomer(ICustomer customer);
+        public abstract void DeleteCustomer(ICustomer customer);
+        public abstract List<IEvent> AllEvents();
+        public abstract void AddEvent(IEvent _event);
+        public abstract void DeleteEvent(IEvent _event);
+        public abstract List<IState> AllStates();
+        public abstract IState GetStateByBook(IBook book);
+        public abstract void AddState(IState state);
+        public abstract void DeleteState(IState state);
 
 
         public abstract void Connect();
@@ -48,77 +48,77 @@ namespace BookstoreSystem.Data.API
             }
 
             // Immplementing all other API abstract methods
-            public override void AddBook(Book book)
+            public override void AddBook(IBook book)
             {
                 this.repository.AddBook(book);
             }
 
-            public override void AddCustomer(Customer customer)
+            public override void AddCustomer(ICustomer customer)
             {
                 this.repository.AddCustomer(customer);
             }
 
-            public override void AddEvent(Event _event)
+            public override void AddEvent(IEvent _event)
             {
                 this.repository.AddEvent(_event);
             }
 
-            public override void AddState(State state)
+            public override void AddState(IState state)
             {
                 this.repository.AddState(state);
             }
 
-            public override List<Book> AllBooks()
+            public override List<IBook> AllBooks()
             {
                 return this.repository.AllBooks();
             }
 
-            public override List<Customer> AllCustomers()
+            public override List<ICustomer> AllCustomers()
             {
                 return this.repository.AllCustomers();
             }
 
-            public override List<Event> AllEvents()
+            public override List<IEvent> AllEvents()
             {
                 return this.repository.AllEvents();
             }
 
-            public override List<State> AllStates()
+            public override List<IState> AllStates()
             {
                 return this.repository.AllStates();
             }
 
-            public override Book BookById(int _id)
+            public override IBook BookById(int _id)
             {
                 return this.repository.BookById(_id);
             }
 
-            public override Customer CustomerById(int _id)
+            public override ICustomer CustomerById(int _id)
             {
                 return this.repository.CustomerById(_id);
             }
 
-            public override void DeleteBook(Book book)
+            public override void DeleteBook(IBook book)
             {
                 this.repository.DeleteBook(book);
             }
 
-            public override void DeleteCustomer(Customer customer)
+            public override void DeleteCustomer(ICustomer customer)
             {
                 this.repository.DeleteCustomer(customer);
             }
 
-            public override void DeleteEvent(Event _event)
+            public override void DeleteEvent(IEvent _event)
             {
                 this.repository.DeleteEvent(_event);
             }
 
-            public override void DeleteState(State state)
+            public override void DeleteState(IState state)
             {
                 this.repository.DeleteState(state);
             }
 
-            public override State GetStateByBook(Book book)
+            public override IState GetStateByBook(IBook book)
             {
                 return this.repository.GetStateByBook(book);
             }

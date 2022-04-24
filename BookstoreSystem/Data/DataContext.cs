@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public class DataContext
+    internal class DataContext
     {
         // From UML:
         // catalog
-        public List<Book> books = new List<Book>();
+        public List<IBook> books = new List<IBook>();
         // users
-        public List<Customer> customers = new List<Customer>();
+        public List<ICustomer> customers = new List<ICustomer>();
         // events
-        public List<Event> events = new List<Event>();
+        public List<IEvent> events = new List<IEvent>();
         // states
-        public List<State> states = new List<State>();
+        public List<IState> states = new List<IState>();
     }
 }

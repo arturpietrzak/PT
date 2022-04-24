@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookstoreSystem.Data
 {
-    public class Book
+    internal class Book : IBook
     {
         private int id;
         private String name;
@@ -45,7 +45,6 @@ namespace BookstoreSystem.Data
             get { return genre; }
             set { genre = value; }
         }
-
 
         // override Equals and GetHashCode for easier comparison in repository
         public override bool Equals(object? obj)
