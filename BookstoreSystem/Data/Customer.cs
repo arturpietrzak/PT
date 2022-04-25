@@ -15,7 +15,9 @@ namespace BookstoreSystem.Data
             this.surname = _surname;
         }
 
-        public int Id { get { return id; } }
+        public int Id { 
+            get { return id; }
+        }
         public String Name
         {
             get { return name; }
@@ -32,7 +34,7 @@ namespace BookstoreSystem.Data
         public override bool Equals(object? obj)
         {
             return obj is Customer customer &&
-                   id == customer.id;
+                id == customer.id;
         }
 
         public override int GetHashCode()
