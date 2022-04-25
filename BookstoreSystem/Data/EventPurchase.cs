@@ -7,7 +7,6 @@ namespace BookstoreSystem.Data
         private IState state;
         private ICustomer customer;
         private DateTime eventDate;
-
         public EventPurchase(IState _state, ICustomer _client)
         {
             this.state = _state;

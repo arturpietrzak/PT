@@ -46,8 +46,7 @@ namespace BookstoreSystem.Logic.API
             }
 
 
-            // implementing abstract methods
-            // Book
+            // Book - implementing abstract methods
             public override void AddBook(int id, string name, int pages, double price, Genre genre, int amount = 0)
             {
                 IBook foundBook = dataLayer.BookById(id);
@@ -120,7 +119,7 @@ namespace BookstoreSystem.Logic.API
                 dataLayer.GetStateByBook(foundBook).Amount = amount;
             }
 
-            // Customer  
+            // Customer - implementing abstract methods
             public override void AddCustomer(int id, string name, string surname)
             {
                 ICustomer foundCustomer = dataLayer.CustomerById(id);
@@ -168,7 +167,7 @@ namespace BookstoreSystem.Logic.API
                 dataLayer.DeleteCustomer(GetCustomerById(id));
             }
 
-            // Actions
+            // Actions - implementing abstract methods
             public override void SellBook(int bookId, int customerId)
             {
                 IBook foundBook = dataLayer.BookById(bookId);

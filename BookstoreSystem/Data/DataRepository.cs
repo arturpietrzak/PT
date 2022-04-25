@@ -1,6 +1,5 @@
 ﻿using BookstoreSystem.Data.API;
 
-
 namespace BookstoreSystem.Data
 {
     internal class DataRepository
@@ -73,7 +72,8 @@ namespace BookstoreSystem.Data
 
         public void AddCustomer (ICustomer customer)
         {
-            // check if the customer is null or he is already in the data context
+            // check if the customer is null or is already in the data context
+
             if (customer == null)
             {
                 throw new Exception("Parsed customer was null");
