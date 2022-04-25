@@ -48,7 +48,7 @@ namespace BookstoreSystem.Data.API
 
             public override void Connect()
             {
-                // some connection
+                //connection
             }
 
             // Immplementing all other API abstract methods
