@@ -1,11 +1,10 @@
-﻿namespace BookstoreSystem.Data.API
+﻿namespace DataLayer.API
 {
     public interface IBook
     {
         int Id { get; }
-        String Name { get; set; }
+        string Name { get; set; }
         int Pages { get; set; }
         double Price { get; set; }
-        Genre Genre { get; set; }
     }
 }

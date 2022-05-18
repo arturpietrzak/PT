@@ -1,27 +1,26 @@
-﻿using BookstoreSystem.Data.API;
+﻿using System;
+using DataLayer.API;
 
-namespace BookstoreSystem.Data
+namespace DataLayer.Implementations
 {
     internal class Book : IBook
     {
         private int id;
-        private String name;
+        private string name;
         private int pages;
         private double price;
-        private Genre genre;
 
         public Book(int _id, string _name, int _pages,
-            double _price, Genre _genre)
+            double _price)
         {
-            this.id = _id;
-            this.name = _name;
-            this.pages = _pages;
-            this.price = _price;
-            this.genre = _genre;
+            id = _id;
+            name = _name;
+            pages = _pages;
+            price = _price;
         }
 
         public int Id { get { return id; } }
-        public String Name
+        public string Name
         {
             get { return name; }
             set { name = value; }
@@ -35,11 +34,6 @@ namespace BookstoreSystem.Data
         {
             get { return price; }
             set { price = value; }
-        }
-        public Genre Genre
-        {
-            get { return genre; }
-            set { genre = value; }
         }
 
         // override Equals and GetHashCode for easier comparison in repository

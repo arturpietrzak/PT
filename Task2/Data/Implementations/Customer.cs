@@ -1,29 +1,31 @@
-﻿using BookstoreSystem.Data.API;
+﻿using System;
+using DataLayer.API;
 
-namespace BookstoreSystem.Data
+namespace DataLayer.Implementations
 {
     internal class Customer : ICustomer
     {
         private int id;
-        private String name;
-        private String surname;
+        private string name;
+        private string surname;
 
-        public Customer(int _id, String _name, String _surname)
+        public Customer(int _id, string _name, string _surname)
         {
-            this.id = _id;
-            this.name = _name;
-            this.surname = _surname;
+            id = _id;
+            name = _name;
+            surname = _surname;
         }
 
-        public int Id { 
+        public int Id
+        {
             get { return id; }
         }
-        public String Name
+        public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        public String Surname
+        public string Surname
         {
             get { return surname; }
             set { surname = value; }
