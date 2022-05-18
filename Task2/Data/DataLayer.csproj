@@ -5,7 +5,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="System.Data.Linq">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.Linq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Service Include="{3259aa49-8aa1-44d3-9025-a0b520596a8c}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Bookstore.designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Bookstore.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Bookstore.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Bookstore.designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
