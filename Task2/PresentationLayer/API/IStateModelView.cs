@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceLayer.API
+namespace PresentationLayer.API
 {
-    public interface IStateModelView
+    internal class IStateModelView
     {
         int State_Id { get; }
         int Book_Id { get; }

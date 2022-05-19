@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.API
 {
-    internal class Class1
+    internal class IBookModelView
     {
+        int Id { get; }
+        string Name { get; set; }
+        int Pages { get; set; }
+        double Price { get; set; }
     }
 }

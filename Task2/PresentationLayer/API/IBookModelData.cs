@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer.API;
 
-namespace ServiceLayer.API
+namespace PresentationLayer.API
 {
-    public interface IBookData
+    interface IBookModelData
     {
-        int Book_Id { get; }
-        string Name { get; }
-        int Pages { get; }
-        double Price { get; }
+        IBookService Service{ get; }
+        IEnumerable<IBookData> Book { get; }
+        IBookModelView CreateBook(int book_id, String name, int pages, double price);
+
     }
 }
+

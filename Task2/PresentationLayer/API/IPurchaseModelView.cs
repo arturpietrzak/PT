@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceLayer.API
+namespace PresentationLayer.API
 {
-    public interface IPurchaseData
+    internal class IPurchaseModelView
     {
         int State_Id { get; }
         int Customer_id { get; }
