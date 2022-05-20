@@ -15,6 +15,12 @@
             <DataTemplate DataType="{x:Type  viewmodels:BookAndStateViewModel}">
                 <views:BookAndStateView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type  viewmodels:CustomersViewModel}">
+                <views:CustomersView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type  viewmodels:PurchasesViewModel}">
+                <views:PurchasesView/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

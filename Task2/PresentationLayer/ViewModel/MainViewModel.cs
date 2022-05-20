@@ -18,7 +18,6 @@ namespace PresentationLayer.ViewModel
 
         private void OnCurrentViewModelChanged()
         {
-            Console.WriteLine("dsadasd\n\n\n\n");
             OnPropertyChanged(nameof(CurrentViewModel));
         }
     }

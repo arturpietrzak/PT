@@ -17,7 +17,7 @@ namespace PresentationLayer
         protected override void OnStartup(StartupEventArgs e)
         {
             NavigationModel navigationModel = new NavigationModel();
-            navigationModel.CurrentViewModel = new BookAndStateViewModel(navigationModel);
+            navigationModel.CurrentViewModel = new HomeViewModel(navigationModel);
 
             MainWindow = new MainWindow()
             {

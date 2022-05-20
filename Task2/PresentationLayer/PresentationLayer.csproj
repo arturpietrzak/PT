@@ -65,6 +65,9 @@
     <Compile Include="API\IStateModelData.cs" />
     <Compile Include="API\IStateModelView.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\NavigateCustomers.cs" />
+    <Compile Include="Commands\NavigatePurchases.cs" />
+    <Compile Include="Commands\NavigateBookAndState.cs" />
     <Compile Include="Model\BookModelData.cs" />
     <Compile Include="Model\CustomerModelData.cs" />
     <Compile Include="Commands\NavigateHome.cs" />
@@ -81,8 +84,14 @@
     <Compile Include="View\BookAndStateView.xaml.cs">
       <DependentUpon>BookAndStateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CustomersView.xaml.cs">
+      <DependentUpon>CustomersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PurchasesView.xaml.cs">
+      <DependentUpon>PurchasesView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -100,7 +109,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CustomersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PurchasesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
