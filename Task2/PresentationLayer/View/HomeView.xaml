@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="PresentationLayer.View.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#7267CB">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Background="#6E3CBC">
+            <TextBlock Foreground="White" Grid.Row="0" Text="Bookstore" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Click="ButtonBooks_Click" Background="#7267CB"  Content="🏠" HorizontalAlignment="Left" VerticalAlignment="Center"  Padding="10 10" Margin="5 0 0 0"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Click="ButtonBooks_Click"  Content="Books" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" Padding="20 10"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Content="Users" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" Padding="20 10"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button Content="Events" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" Padding="20 10"/>
+        </Grid>
+    </Grid>
+</UserControl>

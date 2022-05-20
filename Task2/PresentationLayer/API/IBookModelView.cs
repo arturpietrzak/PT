@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.API
 {
-    internal class IBookModelView
+    public interface IBookModelView
     {
         int Id { get; }
-        string Name { get; set; }
+        String Name { get; set; }
         int Pages { get; set; }
         double Price { get; set; }
     }

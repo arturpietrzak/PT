@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 using ServiceLayer.API;
 using PresentationLayer.API;
 
-namespace PresentationLayer.Model
+namespace PresentationLayer
 {
     internal class StateModelData : IStateModelData
     {
-        public IStateService Service { get; }
-
         public StateModelData(IStateService service)
         {
             Service = service;
         }
+        public IStateService Service { get; }
         public IEnumerable<IStateData> State
         {
             get
@@ -28,7 +27,7 @@ namespace PresentationLayer.Model
 
         public IStateModelView CreateState(int state_id, int book_id, int amount)
         {
-            return new StateModelView(state_id, book_id, amount);
+            return null;// new StateModelView(state_id, book_id, amount);
         }
     }
 }

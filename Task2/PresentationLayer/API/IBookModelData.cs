@@ -7,12 +7,11 @@ using ServiceLayer.API;
 
 namespace PresentationLayer.API
 {
-    interface IBookModelData
+    public interface IBookModelData
     {
         IBookService Service{ get; }
         IEnumerable<IBookData> Book { get; }
         IBookModelView CreateBook(int book_id, String name, int pages, double price);
-
     }
 }
 

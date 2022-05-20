@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.API
 {
-    internal class IStateModelView
+    public interface IStateModelView
     {
         int State_Id { get; }
         int Book_Id { get; }

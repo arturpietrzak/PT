@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.API
 {
-    internal class IPurchaseModelView
+    public class IPurchaseModelView
     {
         int State_Id { get; }
         int Customer_id { get; }

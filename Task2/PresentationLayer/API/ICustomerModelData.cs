@@ -7,9 +7,8 @@ using ServiceLayer.API;
 
 namespace PresentationLayer.API
 {
-    interface ICustomerModelData
-    { 
-
+    public interface ICustomerModelData
+    {
         ICustomerService Service { get; }
         IEnumerable<ICustomerData> Customer { get; }
         ICustomerModelView CreateCustomer(int customer_id, String name, String Surname);

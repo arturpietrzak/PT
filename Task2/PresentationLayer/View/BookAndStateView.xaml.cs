@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PresentationLayer
+namespace PresentationLayer.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy BookAndStateView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BookAndStateView : UserControl
     {
-        public MainWindow()
+        public BookAndStateView()
         {
             InitializeComponent();
         }

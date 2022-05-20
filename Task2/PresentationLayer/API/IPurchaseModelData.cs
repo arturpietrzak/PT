@@ -7,10 +7,10 @@ using ServiceLayer.API;
 
 namespace PresentationLayer.API
 {
-    interface IPurchaseModelData
+    public interface IPurchaseModelData
     {
         IPurchaseService Service { get; }
-        IEnumerable<IPurchaseData> Book { get; }
+        IEnumerable<IPurchaseData> Purchase { get; }
         IPurchaseModelView CreatePurchase(int state_id, int customer_id, DateTime purchase_date);
     }
 }

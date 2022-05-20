@@ -7,7 +7,7 @@ using ServiceLayer.API;
 
 namespace PresentationLayer.API
 {
-    interface IStateModelData
+    public interface IStateModelData
     {
         IStateService Service { get; }
         IEnumerable<IStateData> State { get; }

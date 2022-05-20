@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 using PresentationLayer.API;
 using ServiceLayer.API;
 
-namespace PresentationLayer.Model
+namespace PresentationLayer
 {
     internal class CustomerModelData : ICustomerModelData
     {
-        public ICustomerService Service { get; }
-
         public CustomerModelData(ICustomerService service)
         {
             Service = service;
         }
+
+        public ICustomerService Service { get; }
 
         public IEnumerable<ICustomerData> Customer
         {
@@ -28,7 +28,7 @@ namespace PresentationLayer.Model
 
         public ICustomerModelView CreateCustomer(int customer_id, string name, string Surname)
         {
-            return new CustomerModelView(customer_id, name, Surname);
+            return null;//CustomerModelView(customer_id, name, Surname);
         }
     }
 }

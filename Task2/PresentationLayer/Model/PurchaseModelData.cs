@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 using PresentationLayer.API;
 using ServiceLayer.API;
 
-namespace PresentationLayer.Model
+namespace PresentationLayer
 {
     internal class PurchaseModelData : IPurchaseModelData
     {
-        IPurchaseService Service { get; }
-
         public PurchaseModelData(IPurchaseService service)
         {
             Service = service;
         }
 
-        IEnumerable<IPurchaseData> Purchase
+        public IPurchaseService Service { get; }
+
+        public IEnumerable<IPurchaseData> Purchase
         {
             get
             {
@@ -26,9 +26,9 @@ namespace PresentationLayer.Model
             }
         }
 
-        IPurchaseModelView CreatePurchase(int state_id, int customer_id, DateTime purchase_date)
+        public IPurchaseModelView CreatePurchase(int state_id, int customer_id, DateTime purchase_date)
         {
-            return new PurchaseModelView(state_id, customer_id, purchase_date );
+            return null;//new PurchaseModelView(state_id, customer_id, purchase_date);
         }
     }
 }
