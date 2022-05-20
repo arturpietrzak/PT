@@ -10,7 +10,6 @@ namespace PresentationLayer.API
     public interface IPurchaseModelData
     {
         IPurchaseService Service { get; }
-        IEnumerable<IPurchaseData> Purchase { get; }
-        IPurchaseModelView CreatePurchase(int state_id, int customer_id, DateTime purchase_date);
+        IEnumerable<IPurchaseData> Purchases { get; }
     }
 }

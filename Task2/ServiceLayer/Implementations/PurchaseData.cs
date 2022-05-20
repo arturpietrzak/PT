@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer.API;
 
-namespace ServiceLayer.API
+namespace ServiceLayer
 {
     internal class PurchaseData : IPurchaseData
     {
@@ -15,8 +16,8 @@ namespace ServiceLayer.API
             Purchase_date = purchase_date;
         }
 
-        public int State_Id { get; }
-        public int Customer_id { get; }
-        public DateTime Purchase_date { get; }
+        public override int State_Id { get; }
+        public override int Customer_id { get; }
+        public override DateTime Purchase_date { get; }
     }
 }

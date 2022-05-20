@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.API
 {
-    public interface IBookData
+    public abstract class IBookData
     {
-        int Book_Id { get; }
-        string Name { get; }
-        int Pages { get; }
-        double Price { get; }
+        public abstract int Book_Id { get; }
+        public abstract string Name { get; }
+        public abstract int Pages { get; }
+        public abstract double Price { get; }
     }
 }

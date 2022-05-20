@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.API
 {
-    public interface IStateData
+    public abstract class IStateData
     {
-        int State_Id { get; }
-        int Book_Id { get; }
-        int Amount { get; }
+        public abstract int State_Id { get; }
+        public abstract int Book_Id { get; }
+        public abstract int Amount { get; }
     }
 }

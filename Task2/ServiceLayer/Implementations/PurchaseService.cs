@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ServiceLayer.API;
 using DataLayer.API;
 
-namespace ServiceLayer.Implementations
+namespace ServiceLayer
 {
     internal class PurchaseService : IPurchaseService
     {
@@ -18,7 +18,7 @@ namespace ServiceLayer.Implementations
         }
 
         // Create - after purchase should reduce amount of book in state
-        public bool HandlePurchase(int customer_id, int book_id, int state_id)
+        public override bool HandlePurchase(int customer_id, int book_id, int state_id)
         {
             IBook book = dataLayer.GetBook(book_id);
             if (book == null)
@@ -42,7 +42,7 @@ namespace ServiceLayer.Implementations
             return dataLayer.UpdateStateAmount(state_id, state.Amount - 1);
         }
         // Read
-        public ICollection<IPurchaseData> GetAllPurchases()
+        public override ICollection<IPurchaseData> GetAllPurchases()
         {
             List<IEvent> events = dataLayer.GetAllEvents().ToList();
             List<IPurchaseData> purchaseDatas = new List<IPurchaseData>();
@@ -54,7 +54,7 @@ namespace ServiceLayer.Implementations
 
             return purchaseDatas;
         }
-        public ICollection<IPurchaseData> GetAllPurchasesByCustomer(int customer_id)
+        public override ICollection<IPurchaseData> GetAllPurchasesByCustomer(int customer_id)
         {
             List<IEvent> events = dataLayer.GetAllEvents().ToList();
             List<IPurchaseData> purchaseDatas = new List<IPurchaseData>();

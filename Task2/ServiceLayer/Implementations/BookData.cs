@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer.API;
 
-namespace ServiceLayer.API
+namespace ServiceLayer
 {
     internal class BookData : IBookData
     {
@@ -16,9 +17,9 @@ namespace ServiceLayer.API
             Price = price;
         }
 
-        public int Book_Id { get; }
-        public string Name { get; }
-        public int Pages { get; }
-        public double Price { get; }
+        public override int Book_Id { get; }
+        public override string Name { get; }
+        public override int Pages { get; }
+        public override double Price { get; }
     }
 }

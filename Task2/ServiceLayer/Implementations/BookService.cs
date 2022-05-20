@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ServiceLayer.API;
 using DataLayer.API;
 
-namespace ServiceLayer.Implementations
+namespace ServiceLayer
 {
     internal class BookService : IBookService
     {
@@ -18,12 +18,12 @@ namespace ServiceLayer.Implementations
         }
 
         // Create
-        public bool AddBook(int book_id, String name, int pages, double price)
+        public override bool AddBook(int book_id, String name, int pages, double price)
         {
             return dataLayer.CreateBook(book_id, name, pages, price);
         }
         // Read
-        public ICollection<IBookData> GetAllBooks()
+        public override ICollection<IBookData> GetAllBooks()
         {
             List<IBook> books = dataLayer.GetAllBooks().ToList();
             List<IBookData> bookDatas = new List<IBookData>();
@@ -35,7 +35,7 @@ namespace ServiceLayer.Implementations
 
             return bookDatas;
         }
-        public ICollection<IBookData> GetAllBooksByTitle(string title)  // multiple books can have the same name
+        public override ICollection<IBookData> GetAllBooksByTitle(string title)  // multiple books can have the same name
         {
             List<IBook> books = dataLayer.GetAllBooks().ToList();
             List<IBookData> bookDatas = new List<IBookData>();
@@ -49,7 +49,7 @@ namespace ServiceLayer.Implementations
 
             return bookDatas;
         }
-        public IBookData GetBookById(int id)
+        public override IBookData GetBookById(int id)
         {
             IBook book = dataLayer.GetBook(id);
 
@@ -61,12 +61,12 @@ namespace ServiceLayer.Implementations
             return new BookData(book.Id, book.Name, book.Pages, book.Price);
         }
         // Update
-        public bool UpdateBook(int book_id, String name, int pages, double price)
+        public override bool UpdateBook(int book_id, String name, int pages, double price)
         {
             return dataLayer.UpdateBook(book_id, name, pages, price);
         }
         // Delete
-        public bool DeleteBook(int book_id)
+        public override bool DeleteBook(int book_id)
         {
             return dataLayer.DeleteBook(book_id);
         }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer.API;
 
-namespace ServiceLayer.API
+namespace ServiceLayer
 {
     internal class CustomerData : ICustomerData
     {
@@ -15,8 +16,8 @@ namespace ServiceLayer.API
             Surname = surname;
         }
 
-        public int Customer_Id { get; }
-        public string Name { get; }
-        public string Surname { get; }
+        public override int Customer_Id { get; }
+        public override string Name { get; }
+        public override string Surname { get; }
     }
 }

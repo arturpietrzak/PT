@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ServiceLayer.API;
 using DataLayer.API;
 
-namespace ServiceLayer.Implementations
+namespace ServiceLayer
 {
     internal class CustomerService : ICustomerService
     {
@@ -18,12 +18,12 @@ namespace ServiceLayer.Implementations
         }
 
         // Create
-        public bool AddCustomer(int customer_id, String name, String surname)
+        public override bool AddCustomer(int customer_id, String name, String surname)
         {
             return dataLayer.CreateCustomer(customer_id, name, surname);
         }
         // Read
-        public ICollection<ICustomerData> GetAllCustomers()
+        public override ICollection<ICustomerData> GetAllCustomers()
         {
             List<ICustomer> customers = dataLayer.GetAllCustomers().ToList();
             List<ICustomerData> customerDatas = new List<ICustomerData>();
@@ -35,7 +35,7 @@ namespace ServiceLayer.Implementations
 
             return customerDatas;
         }
-        public ICollection<ICustomerData> GetCustomersByCredentials(String name, String surname) // multiple people can have the same name and surname
+        public override ICollection<ICustomerData> GetCustomersByCredentials(String name, String surname) // multiple people can have the same name and surname
         {
             List<ICustomer> customers = dataLayer.GetAllCustomers().ToList();
             List<ICustomerData> customerDatas = new List<ICustomerData>();
@@ -50,7 +50,7 @@ namespace ServiceLayer.Implementations
 
             return customerDatas;
         }
-        public ICustomerData GetCustomerById(int id)
+        public override ICustomerData GetCustomerById(int id)
         {
             ICustomer customer = dataLayer.GetCustomer(id);
 
@@ -62,12 +62,12 @@ namespace ServiceLayer.Implementations
             return new CustomerData(customer.Id, customer.Name, customer.Surname);
         }
         // Update
-        public bool UpdateCustomer(int customer_id, String name, String surname)
+        public override bool UpdateCustomer(int customer_id, String name, String surname)
         {
             return dataLayer.UpdateCustomer(customer_id, name, surname);
         }
         // Delete
-        public bool DeleteCustomer(int customer_id)
+        public override bool DeleteCustomer(int customer_id)
         {
             return dataLayer.DeleteCustomer(customer_id);
         }

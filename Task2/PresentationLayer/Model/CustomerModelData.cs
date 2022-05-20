@@ -17,7 +17,7 @@ namespace PresentationLayer
 
         public ICustomerService Service { get; }
 
-        public IEnumerable<ICustomerData> Customer
+        public IEnumerable<ICustomerData> Customers
         {
             get
             {

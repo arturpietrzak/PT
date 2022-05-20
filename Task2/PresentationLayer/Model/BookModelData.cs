@@ -17,18 +17,13 @@ namespace PresentationLayer
 
         public IBookService Service { get; }
 
-        public IEnumerable<IBookData> Book
+        public IEnumerable<IBookData> Books
         {
             get
             {
                 IEnumerable<IBookData> books = Service.GetAllBooks();
                 return books;
             }
-        }
-
-        IBookModelView IBookModelData.CreateBook(int book_id, string name, int pages, double price)
-        {
-            return null;//new BookModelView(book_id, name, pages, price);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ServiceLayer.API;
 using DataLayer.API;
 
-namespace ServiceLayer.Implementations
+namespace ServiceLayer
 {
     internal class StateService : IStateService
     {
@@ -18,7 +18,7 @@ namespace ServiceLayer.Implementations
         }
 
         // Create
-        public bool AddState(int state_id, int book_id, int amount)
+        public override bool AddState(int state_id, int book_id, int amount)
         {
             IBook book = dataLayer.GetBook(book_id);
 
@@ -30,7 +30,7 @@ namespace ServiceLayer.Implementations
             return dataLayer.CreateState(state_id, dataLayer.GetBook(book_id), amount);
         }
         // Read
-        public ICollection<IStateData> GetAllStates()
+        public override ICollection<IStateData> GetAllStates()
         {
             List<IState> states = dataLayer.GetAllStates().ToList();
             List<IStateData> stateDatas = new List<IStateData>();
@@ -42,7 +42,7 @@ namespace ServiceLayer.Implementations
 
             return stateDatas;
         }
-        public IStateData GetStateByBookId(int book_id)
+        public override IStateData GetStateByBookId(int book_id)
         {
             List<IState> states = dataLayer.GetAllStates().ToList();
 
@@ -56,7 +56,7 @@ namespace ServiceLayer.Implementations
 
             return null;
         }
-        public IStateData GetStateByStateId(int state_id)
+        public override IStateData GetStateByStateId(int state_id)
         {
             IState state = dataLayer.GetState(state_id);
 
@@ -68,12 +68,12 @@ namespace ServiceLayer.Implementations
             return new StateData(state.Id, state.Book.Id, state.Amount);
         }
         // Update
-        public bool UpdateStateAmount(int state_id, int amount)
+        public override bool UpdateStateAmount(int state_id, int amount)
         {
             return dataLayer.UpdateStateAmount(state_id, amount);
         }
         // Delete
-        public bool DeleteState(int state_id)
+        public override bool DeleteState(int state_id)
         {
             return dataLayer.DeleteState(state_id);
         }

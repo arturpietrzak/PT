@@ -10,8 +10,7 @@ namespace PresentationLayer.API
     public interface IBookModelData
     {
         IBookService Service{ get; }
-        IEnumerable<IBookData> Book { get; }
-        IBookModelView CreateBook(int book_id, String name, int pages, double price);
+        IEnumerable<IBookData> Books { get; }
     }
 }
 

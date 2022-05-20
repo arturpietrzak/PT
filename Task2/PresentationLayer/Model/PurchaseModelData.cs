@@ -17,7 +17,7 @@ namespace PresentationLayer
 
         public IPurchaseService Service { get; }
 
-        public IEnumerable<IPurchaseData> Purchase
+        public IEnumerable<IPurchaseData> Purchases
         {
             get
             {

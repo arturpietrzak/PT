@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.API
 {
-    public interface ICustomerData
+    public abstract class ICustomerData
     {
-        int Customer_Id { get; }
-        string Name { get; }
-        string Surname { get; }
+        public abstract int Customer_Id { get; }
+        public abstract string Name { get; }
+        public abstract string Surname { get; }
     }
 }

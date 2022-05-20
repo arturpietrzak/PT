@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer.API;
 
-namespace ServiceLayer.API
+namespace ServiceLayer
 {
     internal class StateData : IStateData
     {
@@ -15,8 +16,8 @@ namespace ServiceLayer.API
             Amount = amount;
         }
 
-        public int State_Id { get; }
-        public int Book_Id { get; }
-        public int Amount { get; }
+        public override int State_Id { get; }
+        public override int Book_Id { get; }
+        public override int Amount { get; }
     }
 }

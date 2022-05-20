@@ -15,7 +15,7 @@ namespace PresentationLayer
             Service = service;
         }
         public IStateService Service { get; }
-        public IEnumerable<IStateData> State
+        public IEnumerable<IStateData> States
         {
             get
             {

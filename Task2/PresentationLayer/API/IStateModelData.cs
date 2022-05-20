@@ -10,7 +10,6 @@ namespace PresentationLayer.API
     public interface IStateModelData
     {
         IStateService Service { get; }
-        IEnumerable<IStateData> State { get; }
-        IStateModelView CreateState(int state_id, int book_id, int amount);
+        IEnumerable<IStateData> States { get; }
     }
 }

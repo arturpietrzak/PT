@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer.API;
 
 namespace PresentationLayer
 {
@@ -19,7 +20,7 @@ namespace PresentationLayer
         // Set NavigationModel currentModel to home view
         public override void Execute(object parameter)
         {
-            navigationModel.CurrentViewModel = new BookAndStateViewModel(this.navigationModel);
+            navigationModel.CurrentViewModel = new BookAndStateViewModel(this.navigationModel, new BookModelData(IBookService.CreateAPI()), new StateModelData(IStateService.CreateAPI()));
         }
     }
 }
