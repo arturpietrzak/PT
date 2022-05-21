@@ -157,7 +157,6 @@ namespace DataLayer.API
             public override bool DeleteBook(int ID)
             {
                 books book = context.books.Where(b => b.book_id == ID).SingleOrDefault();
-
                 if (GetBook(ID) == null || ID.Equals(null))
                 {
                     return false;
@@ -261,8 +260,6 @@ namespace DataLayer.API
                     event_date = DateTime.Now,
                 };
 
-                Console.WriteLine(state.Id);
-                Console.WriteLine(customer.Id);
 
                 context.events.InsertOnSubmit(newEvent);
                 context.SubmitChanges();
@@ -364,6 +361,11 @@ namespace DataLayer.API
             }
             public override IState GetStateForBook(IBook book)
             {
+                if (book == null)
+                {
+                    return null;
+                }
+
                 var stateDb = (
                     from states
                     in context.states

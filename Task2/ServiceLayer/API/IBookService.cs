@@ -100,6 +100,21 @@ namespace ServiceLayer.API
             // Delete
             public override bool DeleteBook(int book_id)
             {
+                if (dataLayer.GetBook(book_id) == null)
+                {
+                    return false;
+                }
+
+                // Delete state
+                int state_id = dataLayer.GetStateForBook(dataLayer.GetBook(book_id)).Id;                
+                bool resultState = dataLayer.DeleteState(state_id);
+
+                if (!resultState)
+                {
+                    return false;
+                }
+
+                // Delete book
                 return dataLayer.DeleteBook(book_id);
             }
         }
