@@ -38,7 +38,20 @@ namespace ServiceLayer.API
             // Create
             public override bool AddBook(int book_id, String name, int pages, double price)
             {
-                return dataLayer.CreateBook(book_id, name, pages, price);
+                bool bookCreated = dataLayer.CreateBook(book_id, name, pages, price);
+                if (!bookCreated)
+                {
+                    return false;
+                }
+
+                bool stateCreated = dataLayer.CreateState(book_id, dataLayer.GetBook(book_id), 0);
+                if (!stateCreated)
+                {
+                    dataLayer.DeleteBook(book_id);
+                    return false;
+                }
+
+                return true;
             }
             // Read
             public override ICollection<IBookData> GetAllBooks()

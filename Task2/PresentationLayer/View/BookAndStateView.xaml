@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentationLayer.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="1000">
     <Grid Background="#7267CB">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -19,13 +19,110 @@
             <TextBlock Foreground="White" Grid.Row="0" Text="Bookstore/Books" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Button Command="{Binding NavigateHomeCommand}" Background="#7267CB"  Content="🏠" HorizontalAlignment="Left" VerticalAlignment="Center"  Padding="10 10" Margin="5 0 0 0"/>
         </Grid>
-        <Grid Grid.Row="2">
+        
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+            <DataGrid Grid.Row="0" Grid.Column="0" IsReadOnly="True" ItemsSource="{Binding bookData}" AutoGenerateColumns="False" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Book_Id}" Header="Book ID" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="5*"/>
+                    <DataGridTextColumn Binding="{Binding Pages}" Header="Pages" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Price}" Header="Price" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Column="1" VerticalAlignment="Top" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Add new customer/Edit existing one" FontWeight="Bold"/>
+                <Grid Grid.Row="1" >
+                    <Label Content="Book ID" Height="28" HorizontalAlignment="Left" Name="newIdLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding newId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="newIdTextBox" VerticalAlignment="Top"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Label Content="Name" Height="28" HorizontalAlignment="Left" Name="newNameLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding newName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="newNameTextBox" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Label Content="Pages" Height="28" HorizontalAlignment="Left" Name="newPagesLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding newPages, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="newPagesTextBox" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Label Content="Price" Height="28" HorizontalAlignment="Left" Name="newPriceLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding newPrice, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="newPriceTextBox" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Create new book" Command="{Binding Path=AddBookCommand}"/>
+                    <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Edit existing book" Command="{Binding Path=UpdateBookCommand}"/>
+                </Grid>
+                <Grid Grid.Row="6">
+                    <Label FontWeight="Bold" Content="Enter ID to check details/Delete" Height="28" HorizontalAlignment="Left" Name="detailIdLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding detailId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="detailIdTextBox" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Grid.Row="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Check details" Command="{Binding Path=CheckDetailsCommand}"/>
+                    <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Delete book" Command="{Binding Path=DeleteBookCommand}"/>
+                </Grid>
+                <DataGrid Grid.Row="8" VerticalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding stateData}" AutoGenerateColumns="False" Margin="0 10 0 0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding State_Id}" Header="State ID" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Amount}" Header="Amount" Width="2*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock Grid.Row="9" Text="Purchase a book" FontWeight="Bold"/>
+                <Grid Grid.Row="10" >
+                    <Label Content="Book ID" Height="28" HorizontalAlignment="Left" Name="purchaseBookIdLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding purchaseBookId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="purchaseBookIdTextBox" VerticalAlignment="Top"/>
+                </Grid>
+                <Grid Grid.Row="11">
+                    <Label Content="Customer ID" Height="28" HorizontalAlignment="Left" Name="purchaseCustomerIdLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding purchaseCustomerId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="purchaseCustomerIdTextBox" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Grid.Row="12">
+                    <Button VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Purchase book" Command="{Binding Path=PurchaseBookCommand}"/>
+                </Grid>
+                <TextBlock Grid.Row="13" Text="Update amount in state of a book" FontWeight="Bold"/>
+                <Grid Grid.Row="14">
+                    <Label Content="Book ID" Height="28" HorizontalAlignment="Left" Name="updateAmountIdLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding updateAmountId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="updateAmountIdTextBox" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Grid.Row="15">
+                    <Label Content="New Amount" Height="28" HorizontalAlignment="Left" Name="updateAmountLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding updateAmount, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="purchaseCustomerTextBox" VerticalAlignment="Top" />
+                </Grid>
+                <Grid Grid.Row="16">
+                    <Button HorizontalAlignment="Stretch" Content="Update amount" Command="{Binding Path=UpdateAmountCommand}" />
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

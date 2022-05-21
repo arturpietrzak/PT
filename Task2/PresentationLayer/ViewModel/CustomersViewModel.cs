@@ -84,8 +84,8 @@ namespace PresentationLayer.ViewModel
             }
         }
 
-        private string _name;
-        public string name
+        private String _name;
+        public String name
         {
             get
             {
@@ -98,8 +98,8 @@ namespace PresentationLayer.ViewModel
             }
         }
 
-        private string _surname;
-        public string surname
+        private String _surname;
+        public String surname
         {
             get
             {

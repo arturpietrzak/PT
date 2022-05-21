@@ -73,7 +73,7 @@ namespace DataLayer.API
             // functions to transform database classess to other classess
             public ICustomer Transform(customers customer)
             {
-                return new Customer(customer.customer_id, customer.surname, customer.name);
+                return new Customer(customer.customer_id, customer.name, customer.surname);
             }
             public IBook Transform(books book)
             {
@@ -82,7 +82,7 @@ namespace DataLayer.API
 
             public IEvent Transform(events evt)
             {
-                return new EventPurchase(GetState(evt.state_id.Value), GetCustomer(evt.customer_id.Value));
+                return new EventPurchase(GetState(evt.state_id), GetCustomer(evt.customer_id));
             }
 
             public IState Transform(states state)
@@ -255,10 +255,14 @@ namespace DataLayer.API
 
                 events newEvent = new events
                 {
+                    event_id = Guid.NewGuid().ToString(),
                     customer_id = customer.Id,
                     state_id = state.Id,
                     event_date = DateTime.Now,
                 };
+
+                Console.WriteLine(state.Id);
+                Console.WriteLine(customer.Id);
 
                 context.events.InsertOnSubmit(newEvent);
                 context.SubmitChanges();

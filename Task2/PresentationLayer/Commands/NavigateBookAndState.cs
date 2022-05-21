@@ -20,7 +20,7 @@ namespace PresentationLayer
         // Set NavigationModel currentModel to home view
         public override void Execute(object parameter)
         {
-            navigationModel.CurrentViewModel = new BookAndStateViewModel(this.navigationModel, new BookModelData(IBookService.CreateAPI()), new StateModelData(IStateService.CreateAPI()));
+            navigationModel.CurrentViewModel = new BookAndStateViewModel(this.navigationModel);
         }
     }
 }

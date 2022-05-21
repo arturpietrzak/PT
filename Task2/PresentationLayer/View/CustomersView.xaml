@@ -27,12 +27,12 @@
 
             <DataGrid Grid.Row="0" Grid.Column="0" IsReadOnly="True" ItemsSource="{Binding customerData}" AutoGenerateColumns="False" Margin="10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Customer_Id}" Header="Customer_ID" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Surname" Width="2*"/>
+                    <DataGridTextColumn Binding="{Binding Customer_Id}" Header="Customer ID" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="2*"/>
                     <DataGridTextColumn Binding="{Binding Surname}" Header="Surname" Width="2*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid Grid.Column="1" VerticalAlignment="Top" Height="400" Margin="10">
+            <Grid Grid.Column="1" VerticalAlignment="Top" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="18"/>
                     <RowDefinition Height="Auto"/>
@@ -68,15 +68,15 @@
                     <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Edit existing customer" Command="{Binding Path=UpdateCustomerCommand}"/>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Label FontWeight="Bold" Content="Enter ID of whom you want to check purchases" Height="28" HorizontalAlignment="Left" Name="SearchId" VerticalAlignment="Top" />
+                    <Label FontWeight="Bold" Content="ID of customer to check purchase/To delete" Height="28" HorizontalAlignment="Left" Name="SearchId" VerticalAlignment="Top" />
                     <TextBox Text="{Binding selectedId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="SearchIdBox" VerticalAlignment="Top" />
                 </Grid>
                 <Button Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Check purchases" Command="{Binding Path=CheckPurchasesCommand}"/>
                 <Button Grid.Row="7" VerticalAlignment="Top" HorizontalAlignment="Stretch" Content="Delete customer" Command="{Binding Path=DeleteCustomerCommand}"/>
                 <DataGrid Grid.Row="8" VerticalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding purchases}" AutoGenerateColumns="False" Margin="0 10 0 0">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding State_Id}" Header="Customer_ID" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding Purchase_date}" Header="Surname" Width="2*"/>
+                        <DataGridTextColumn Binding="{Binding State_Id}" Header="State ID" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Purchase_date}" Header="Event Date" Width="2*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
