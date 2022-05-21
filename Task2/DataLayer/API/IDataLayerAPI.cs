@@ -172,7 +172,7 @@ namespace DataLayer.API
             // For ICustomer
             public override bool CreateCustomer(int ID, string name, string surname)
             {
-                if (GetCustomer(ID) != null || name.Equals(null) || name.Length > 100 || surname.Equals(null) || surname.Length > 100)
+                if (GetCustomer(ID) != null || name == null || name.Length > 100 || surname == null || surname.Length > 100)
                 {
                     return false;
                 }
@@ -219,7 +219,7 @@ namespace DataLayer.API
             public override bool UpdateCustomer(int ID, String name, String surname)
             {
                 customers customer = context.customers.Where(c => c.customer_id == ID).SingleOrDefault();
-                if (ID.Equals(null) || name.Equals(null) || surname.Equals(null) || name.Equals(null) || name.Length > 100 || surname.Equals(null) || surname.Length > 100)
+                if (customer == null || ID.Equals(null) || name.Equals(null) || surname.Equals(null) || name.Equals(null) || name.Length > 100 || surname.Equals(null) || surname.Length > 100)
                 {
                     return false;
                 }

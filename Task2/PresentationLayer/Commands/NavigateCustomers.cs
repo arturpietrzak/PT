@@ -20,7 +20,7 @@ namespace PresentationLayer
         // Set NavigationModel currentModel to home view
         public override void Execute(object parameter)
         {
-            navigationModel.CurrentViewModel = new CustomersViewModel(this.navigationModel, new CustomerModelData(ICustomerService.CreateAPI()));
+            navigationModel.CurrentViewModel = new CustomersViewModel(this.navigationModel);
         }
     }
 }

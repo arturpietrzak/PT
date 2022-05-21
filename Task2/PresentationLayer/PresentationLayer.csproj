@@ -77,6 +77,7 @@
     <Compile Include="Commands\NavigateCustomers.cs" />
     <Compile Include="Commands\NavigatePurchases.cs" />
     <Compile Include="Commands\NavigateBookAndState.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Model\BookModelData.cs" />
     <Compile Include="Model\CustomerModelData.cs" />
     <Compile Include="Commands\NavigateHome.cs" />
