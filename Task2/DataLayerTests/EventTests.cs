@@ -28,8 +28,6 @@ namespace DataLayerTests
 
 
             Assert.IsTrue(dataLayer.CreateEvent(dataLayer.GetState(1), dataLayer.GetCustomer(1)));
-            Assert.AreEqual(dataLayer.GetState(1).Id, 1);
-            Assert.AreEqual(dataLayer.GetState(1).Amount, 10);
         }
 
         [TestMethod]
