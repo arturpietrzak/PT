@@ -58,7 +58,7 @@ namespace DataLayerTests
 
 
             //to tez
-            Assert.AreEqual(dataLayer.GetEventsForCustomer(dataLayer.GetCustomer(1)), );
+            Assert.AreEqual(dataLayer.GetEventsForCustomer(dataLayer.GetCustomer(1)), 1);
         }
 
 
