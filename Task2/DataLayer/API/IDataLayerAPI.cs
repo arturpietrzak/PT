@@ -21,7 +21,7 @@ namespace DataLayer.API
         // For ICustomer
         public abstract bool CreateCustomer(int ID, String name, String surname);
         public abstract ICollection<ICustomer> GetAllCustomers();
-        public abstract ICustomer GetCustomer(int ID);
+        public abstract ICustomer GetCustomer(int? ID);
         public abstract bool UpdateCustomer(int ID, String name, String surname);
         public abstract bool DeleteCustomer(int ID);
 
@@ -34,7 +34,7 @@ namespace DataLayer.API
         // For IState
         public abstract bool CreateState(int state_id, IBook book, int amount);
         public abstract ICollection<IState> GetAllStates();
-        public abstract IState GetState(int id);
+        public abstract IState GetState(int? id);
         public abstract IState GetStateForBook(IBook book);
         public abstract bool UpdateStateAmount(int ID, int amount);
         public abstract bool DeleteState(int ID);
@@ -199,7 +199,7 @@ namespace DataLayer.API
 
                 return list;
             }
-            public override ICustomer GetCustomer(int ID)
+            public override ICustomer GetCustomer(int? ID)
             {
                 var customerDb = (
                     from customers
@@ -269,6 +269,8 @@ namespace DataLayer.API
             public override ICollection<IEvent> GetAllEvents()
             {
                 var eventsDb = from events in context.events select events;
+
+                Console.WriteLine(eventsDb.Count());
                 List<IEvent> list = new List<IEvent>();
                 foreach (var evt in eventsDb)
                 {
@@ -343,7 +345,7 @@ namespace DataLayer.API
 
                 return list;
             }
-            public override IState GetState(int ID)
+            public override IState GetState(int? ID)
             {
                 var stateDb = (
                     from states

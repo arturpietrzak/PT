@@ -74,9 +74,9 @@ namespace ServiceLayer.API
 
                 foreach (var evt in events)
                 {
-                    if (evt.Customer.Id == customer_id)
+                    if (evt.Customer != null && evt.Customer.Id == customer_id)
                     {
-                        purchaseDatas.Add(new PurchaseData(evt.State.Id, evt.Customer.Id, evt.EventDate));
+                        purchaseDatas.Add(new PurchaseData(evt.State != null ? evt.State.Id : -1, evt.Customer.Id, evt.EventDate));
                     }
                 }
 

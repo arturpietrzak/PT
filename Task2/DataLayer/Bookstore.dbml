@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Bookstore" Class="BookstoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-KE9V009;Initial Catalog=Bookstore;Persist Security Info=True;User ID=bookstore" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="BookstoreConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.states" Member="states">
-    <Type Name="states">
-      <Column Name="state_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="book_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="states_events" Member="events" ThisKey="state_id" OtherKey="state_id" Type="events" />
-      <Association Name="books_states" Member="books" ThisKey="book_id" OtherKey="book_id" Type="books" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.books" Member="books">
     <Type Name="books">
       <Column Name="book_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -16,6 +7,15 @@
       <Column Name="pages" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="books_states" Member="states" ThisKey="book_id" OtherKey="book_id" Type="states" />
+    </Type>
+  </Table>
+  <Table Name="dbo.states" Member="states">
+    <Type Name="states">
+      <Column Name="state_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="book_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="states_events" Member="events" ThisKey="state_id" OtherKey="state_id" Type="events" />
+      <Association Name="books_states" Member="books" ThisKey="book_id" OtherKey="book_id" Type="books" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.customers" Member="customers">
@@ -29,11 +29,11 @@
   <Table Name="dbo.events" Member="events">
     <Type Name="events">
       <Column Name="event_id" Type="System.String" DbType="VarChar(40) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="state_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="state_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="customer_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="event_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="customers_events" Member="customers" ThisKey="customer_id" OtherKey="customer_id" Type="customers" IsForeignKey="true" />
-      <Association Name="states_events" Member="states" ThisKey="state_id" OtherKey="state_id" Type="states" IsForeignKey="true" />
+      <Association Name="customers_events" Member="customers" ThisKey="customer_id" OtherKey="customer_id" Type="customers" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="states_events" Member="states" ThisKey="state_id" OtherKey="state_id" Type="states" IsForeignKey="true" DeleteRule="SET NULL" />
     </Type>
   </Table>
 </Database>

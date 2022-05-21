@@ -30,12 +30,12 @@ namespace DataLayer
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertstates(states instance);
-    partial void Updatestates(states instance);
-    partial void Deletestates(states instance);
     partial void Insertbooks(books instance);
     partial void Updatebooks(books instance);
     partial void Deletebooks(books instance);
+    partial void Insertstates(states instance);
+    partial void Updatestates(states instance);
+    partial void Deletestates(states instance);
     partial void Insertcustomers(customers instance);
     partial void Updatecustomers(customers instance);
     partial void Deletecustomers(customers instance);
@@ -74,19 +74,19 @@ namespace DataLayer
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<states> states
-		{
-			get
-			{
-				return this.GetTable<states>();
-			}
-		}
-		
 		public System.Data.Linq.Table<books> books
 		{
 			get
 			{
 				return this.GetTable<books>();
+			}
+		}
+		
+		public System.Data.Linq.Table<states> states
+		{
+			get
+			{
+				return this.GetTable<states>();
 			}
 		}
 		
@@ -104,6 +104,168 @@ namespace DataLayer
 			{
 				return this.GetTable<events>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.books")]
+	public partial class books : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _book_id;
+		
+		private string _name;
+		
+		private int _pages;
+		
+		private double _price;
+		
+		private EntitySet<states> _states;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onbook_idChanging(int value);
+    partial void Onbook_idChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnpagesChanging(int value);
+    partial void OnpagesChanged();
+    partial void OnpriceChanging(double value);
+    partial void OnpriceChanged();
+    #endregion
+		
+		public books()
+		{
+			this._states = new EntitySet<states>(new Action<states>(this.attach_states), new Action<states>(this.detach_states));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_book_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int book_id
+		{
+			get
+			{
+				return this._book_id;
+			}
+			set
+			{
+				if ((this._book_id != value))
+				{
+					this.Onbook_idChanging(value);
+					this.SendPropertyChanging();
+					this._book_id = value;
+					this.SendPropertyChanged("book_id");
+					this.Onbook_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pages", DbType="Int NOT NULL")]
+		public int pages
+		{
+			get
+			{
+				return this._pages;
+			}
+			set
+			{
+				if ((this._pages != value))
+				{
+					this.OnpagesChanging(value);
+					this.SendPropertyChanging();
+					this._pages = value;
+					this.SendPropertyChanged("pages");
+					this.OnpagesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
+		public double price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="books_states", Storage="_states", ThisKey="book_id", OtherKey="book_id")]
+		public EntitySet<states> states
+		{
+			get
+			{
+				return this._states;
+			}
+			set
+			{
+				this._states.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_states(states entity)
+		{
+			this.SendPropertyChanging();
+			entity.books = this;
+		}
+		
+		private void detach_states(states entity)
+		{
+			this.SendPropertyChanging();
+			entity.books = null;
 		}
 	}
 	
@@ -286,168 +448,6 @@ namespace DataLayer
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.books")]
-	public partial class books : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _book_id;
-		
-		private string _name;
-		
-		private int _pages;
-		
-		private double _price;
-		
-		private EntitySet<states> _states;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onbook_idChanging(int value);
-    partial void Onbook_idChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnpagesChanging(int value);
-    partial void OnpagesChanged();
-    partial void OnpriceChanging(double value);
-    partial void OnpriceChanged();
-    #endregion
-		
-		public books()
-		{
-			this._states = new EntitySet<states>(new Action<states>(this.attach_states), new Action<states>(this.detach_states));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_book_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int book_id
-		{
-			get
-			{
-				return this._book_id;
-			}
-			set
-			{
-				if ((this._book_id != value))
-				{
-					this.Onbook_idChanging(value);
-					this.SendPropertyChanging();
-					this._book_id = value;
-					this.SendPropertyChanged("book_id");
-					this.Onbook_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pages", DbType="Int NOT NULL")]
-		public int pages
-		{
-			get
-			{
-				return this._pages;
-			}
-			set
-			{
-				if ((this._pages != value))
-				{
-					this.OnpagesChanging(value);
-					this.SendPropertyChanging();
-					this._pages = value;
-					this.SendPropertyChanged("pages");
-					this.OnpagesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
-		public double price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this.OnpriceChanging(value);
-					this.SendPropertyChanging();
-					this._price = value;
-					this.SendPropertyChanged("price");
-					this.OnpriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="books_states", Storage="_states", ThisKey="book_id", OtherKey="book_id")]
-		public EntitySet<states> states
-		{
-			get
-			{
-				return this._states;
-			}
-			set
-			{
-				this._states.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_states(states entity)
-		{
-			this.SendPropertyChanging();
-			entity.books = this;
-		}
-		
-		private void detach_states(states entity)
-		{
-			this.SendPropertyChanging();
-			entity.books = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.customers")]
 	public partial class customers : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -594,9 +594,9 @@ namespace DataLayer
 		
 		private string _event_id;
 		
-		private int _state_id;
+		private System.Nullable<int> _state_id;
 		
-		private int _customer_id;
+		private System.Nullable<int> _customer_id;
 		
 		private System.DateTime _event_date;
 		
@@ -610,9 +610,9 @@ namespace DataLayer
     partial void OnCreated();
     partial void Onevent_idChanging(string value);
     partial void Onevent_idChanged();
-    partial void Onstate_idChanging(int value);
+    partial void Onstate_idChanging(System.Nullable<int> value);
     partial void Onstate_idChanged();
-    partial void Oncustomer_idChanging(int value);
+    partial void Oncustomer_idChanging(System.Nullable<int> value);
     partial void Oncustomer_idChanged();
     partial void Onevent_dateChanging(System.DateTime value);
     partial void Onevent_dateChanged();
@@ -645,8 +645,8 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state_id", DbType="Int NOT NULL")]
-		public int state_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state_id", DbType="Int")]
+		public System.Nullable<int> state_id
 		{
 			get
 			{
@@ -669,8 +669,8 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_customer_id", DbType="Int NOT NULL")]
-		public int customer_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_customer_id", DbType="Int")]
+		public System.Nullable<int> customer_id
 		{
 			get
 			{
@@ -713,7 +713,7 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="customers_events", Storage="_customers", ThisKey="customer_id", OtherKey="customer_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="customers_events", Storage="_customers", ThisKey="customer_id", OtherKey="customer_id", IsForeignKey=true, DeleteRule="SET NULL")]
 		public customers customers
 		{
 			get
@@ -740,14 +740,14 @@ namespace DataLayer
 					}
 					else
 					{
-						this._customer_id = default(int);
+						this._customer_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("customers");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="states_events", Storage="_states", ThisKey="state_id", OtherKey="state_id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="states_events", Storage="_states", ThisKey="state_id", OtherKey="state_id", IsForeignKey=true, DeleteRule="SET NULL")]
 		public states states
 		{
 			get
@@ -774,7 +774,7 @@ namespace DataLayer
 					}
 					else
 					{
-						this._state_id = default(int);
+						this._state_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("states");
 				}
