@@ -49,7 +49,7 @@ namespace ServiceLayer
 
             foreach (var evt in events)
             {
-                purchaseDatas.Add(new PurchaseData(evt.State.Id, evt.Customer.Id, evt.EventDate));
+                purchaseDatas.Add(new PurchaseData(evt.Id, evt.State.Id, evt.Customer.Id, evt.EventDate));
             }
 
             return purchaseDatas;
@@ -63,11 +63,24 @@ namespace ServiceLayer
             {
                 if (evt.Customer.Id == customer_id)
                 {
-                    purchaseDatas.Add(new PurchaseData(evt.State.Id, evt.Customer.Id, evt.EventDate));
+                    purchaseDatas.Add(new PurchaseData(evt.Id, evt.State.Id, evt.Customer.Id, evt.EventDate));
                 }
             }
 
             return purchaseDatas;
+        }
+
+        public override IPurchaseData GetPurchaseByID(String purchase_id)
+        {
+            IEvent purchase = dataLayer.GetEventById(purchase_id);
+
+            if (purchase == null)
+            {
+                return null;
+            }
+
+            return new PurchaseData(purchase.Id, purchase.State.Id, purchase.Customer.Id, purchase.EventDate);
+
         }
     }
 }

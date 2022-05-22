@@ -7,11 +7,11 @@ using ServiceLayer.API;
 
 namespace PresentationLayer.API
 {
-    public interface IBookModelData
+    public interface IBookModel
     {
-        int Book_Id { get; }
-        string Name { get; }
-        int Pages { get; }
-        double Price { get; }
+        IBookModelData Transform(IBookData data);
+        IBookService Service { get; }
+        ICollection<IBookModelData> GetAllBooks();
     }
 }
+

@@ -6,21 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceLayer.API;
 
-namespace PresentationLayer
+namespace PresentationLayer.API
 {
     class NavigatePurchases : CommandBase
     {
         private NavigationModel navigationModel;
+        private IPurchaseService purchaseService;
 
         public NavigatePurchases(NavigationModel navigationModel)
         {
             this.navigationModel = navigationModel;
+            this.purchaseService = IPurchaseService.CreateAPI();
         }
 
         // Set NavigationModel currentModel to home view
         public override void Execute(object parameter)
         {
-            navigationModel.CurrentViewModel = new PurchasesViewModel(this.navigationModel, new PurchaseModelData(IPurchaseService.CreateAPI()));
+            navigationModel.CurrentViewModel = new PurchasesViewModel(this.navigationModel, new PurchaseModel(purchaseService));
         }
     }
 }

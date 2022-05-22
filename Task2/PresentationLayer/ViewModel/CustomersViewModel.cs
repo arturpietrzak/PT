@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PresentationLayer.API;
-using ServiceLayer.API;
 
 namespace PresentationLayer.ViewModel
 {
     internal class CustomersViewModel : ViewModelBase
     {
-        private ICustomerService service;
-        private ICollection<ICustomerData> _customerData;
-        public ICollection<ICustomerData> customerData
+        private ICustomerModel customerModel;
+        private IPurchaseModel purchaseModel;
+
+        private ICollection<ICustomerModelData> _customerData;
+        public ICollection<ICustomerModelData> customerData
         {
             get
             {
@@ -25,8 +26,8 @@ namespace PresentationLayer.ViewModel
                 OnPropertyChanged("customerData");
             }
         }
-        private ICollection<IPurchaseData> _purchases;
-        public ICollection<IPurchaseData> purchases
+        private ICollection<IPurchaseModelData> _purchases;
+        public ICollection<IPurchaseModelData> purchases
         {
             get
             {
@@ -39,11 +40,11 @@ namespace PresentationLayer.ViewModel
             }
         }
 
-        public CustomersViewModel(NavigationModel navigationModel)
+        public CustomersViewModel(NavigationModel navigationModel, ICustomerModel customerModel, IPurchaseModel purchaseModel)
         {
-            service = ICustomerService.CreateAPI();
-            customerData = service.GetAllCustomers();
-            purchases = IPurchaseService.CreateAPI().GetAllPurchasesByCustomer(-999);
+            this.customerModel = customerModel;
+            this.purchaseModel = purchaseModel;
+            customerData = customerModel.GetAllCustomers();
 
             NavigateHomeCommand = new NavigateHome(navigationModel);
             AddCustomerCommand = new RelayCommand(AddCustomer);
@@ -51,7 +52,6 @@ namespace PresentationLayer.ViewModel
             RefreshCustomersCommand = new RelayCommand(RefreshCustomers);
             CheckPurchasesCommand = new RelayCommand(CheckPurchases);
             DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
-
         }
 
         private int _id;
@@ -121,7 +121,7 @@ namespace PresentationLayer.ViewModel
 
         private void AddCustomer()
         {
-            bool added = service.AddCustomer(id, name, surname);
+            bool added = customerModel.Service.AddCustomer(id, name, surname);
 
             if (added)
             {
@@ -135,7 +135,7 @@ namespace PresentationLayer.ViewModel
 
         private void UpdateCustomer()
         {
-            bool updated = service.UpdateCustomer(id, name, surname);
+            bool updated = customerModel.Service.UpdateCustomer(id, name, surname);
 
             if (updated)
             {
@@ -149,17 +149,17 @@ namespace PresentationLayer.ViewModel
 
         private void RefreshCustomers()
         {
-            customerData = service.GetAllCustomers();
+            customerData = customerModel.GetAllCustomers();
         }
 
         private void CheckPurchases()
         {
-            purchases = IPurchaseService.CreateAPI().GetAllPurchasesByCustomer(selectedId);
+            purchases = purchaseModel.GetAllPurchasesByCustomer(selectedId);
         }
 
         private void DeleteCustomer()
         {
-            bool deleted = service.DeleteCustomer(selectedId);
+            bool deleted = customerModel.Service.DeleteCustomer(selectedId);
 
             if (deleted)
             {

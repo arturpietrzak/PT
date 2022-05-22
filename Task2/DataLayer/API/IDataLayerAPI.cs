@@ -27,6 +27,7 @@ namespace DataLayer.API
 
         // For IEvent
         public abstract bool CreateEvent(IState state, ICustomer customer);
+        public abstract IEvent GetEventById(String id);
         public abstract ICollection<IEvent> GetAllEvents();
         public abstract ICollection<IEvent> GetEventsForState(IState state);
         public abstract ICollection<IEvent> GetEventsForCustomer(ICustomer customer);
@@ -82,7 +83,7 @@ namespace DataLayer.API
 
             public IEvent Transform(events evt)
             {
-                return new EventPurchase(GetState(evt.state_id), GetCustomer(evt.customer_id));
+                return new EventPurchase(evt.event_id, GetState(evt.state_id), GetCustomer(evt.customer_id), evt.event_date);
             }
 
             public IState Transform(states state)
@@ -93,7 +94,7 @@ namespace DataLayer.API
             // For IBook
             public override bool CreateBook(int ID, string name, int pages, double price)
             {
-                if (GetBook(ID) != null || name.Equals(null) || pages <= 0 || price < 0)
+                if (GetBook(ID) != null || name == null || pages <= 0 || price < 0 || ID < 0)
                 {
                     return false;
                 }
@@ -171,7 +172,7 @@ namespace DataLayer.API
             // For ICustomer
             public override bool CreateCustomer(int ID, string name, string surname)
             {
-                if (GetCustomer(ID) != null || name == null || name.Length > 100 || surname == null || surname.Length > 100)
+                if (GetCustomer(ID) != null || ID < 0 || name == null || name.Length > 100 || surname == null || surname.Length > 100)
                 {
                     return false;
                 }
@@ -266,6 +267,23 @@ namespace DataLayer.API
 
                 return true;
             }
+            public override IEvent GetEventById(String id)
+            {
+                var eventsDb = (
+                    from events
+                    in context.events
+                    where (events.event_id == id)
+                    select events
+                ).SingleOrDefault();
+
+                if (eventsDb == null)
+                {
+                    return null;
+                }
+
+                return Transform(eventsDb);
+            }
+
             public override ICollection<IEvent> GetAllEvents()
             {
                 var eventsDb = from events in context.events select events;
@@ -317,7 +335,7 @@ namespace DataLayer.API
             // For IState
             public override bool CreateState(int state_id, IBook book, int amount)
             {
-                if (GetStateForBook(book) != null || GetState(state_id) != null || amount < 0)
+                if (GetStateForBook(book) != null || GetState(state_id) != null || amount < 0 || state_id < 0)
                 {
                     return false;
                 }

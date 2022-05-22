@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceLayer.API;
 
 namespace ServiceLayer.API
 {
@@ -12,6 +13,8 @@ namespace ServiceLayer.API
         // Create
         public abstract bool HandlePurchase(int customer_id, int book_id, int state_id);
         // Read
+        public abstract IPurchaseData GetPurchaseByID(String purchase_id);
+
         public abstract ICollection<IPurchaseData> GetAllPurchases();
         public abstract ICollection<IPurchaseData> GetAllPurchasesByCustomer(int customer_id);
 
@@ -52,9 +55,22 @@ namespace ServiceLayer.API
                 }
 
                 dataLayer.CreateEvent(state, customer);
-                return dataLayer.UpdateStateAmount(state_id, state.Amount - 1);
+                return true;
             }
             // Read
+            public override IPurchaseData GetPurchaseByID(String purchase_id)
+            {
+                IEvent purchase = dataLayer.GetEventById(purchase_id);
+
+                if (purchase == null)
+                {
+                    return null;
+                }
+
+                return new PurchaseData(purchase.Id, purchase.State != null ? purchase.State.Id : -1, purchase.Customer != null ? purchase.Customer.Id : -1, purchase.EventDate);
+
+            }
+
             public override ICollection<IPurchaseData> GetAllPurchases()
             {
                 List<IEvent> events = dataLayer.GetAllEvents().ToList();
@@ -62,7 +78,7 @@ namespace ServiceLayer.API
 
                 foreach (var evt in events)
                 {
-                    purchaseDatas.Add(new PurchaseData(evt.State.Id, evt.Customer.Id, evt.EventDate));
+                    purchaseDatas.Add(new PurchaseData(evt.Id, evt.State != null ? evt.State.Id : -1, evt.Customer != null ? evt.Customer.Id : -1, evt.EventDate));
                 }
 
                 return purchaseDatas;
@@ -76,7 +92,7 @@ namespace ServiceLayer.API
                 {
                     if (evt.Customer != null && evt.Customer.Id == customer_id)
                     {
-                        purchaseDatas.Add(new PurchaseData(evt.State != null ? evt.State.Id : -1, evt.Customer.Id, evt.EventDate));
+                        purchaseDatas.Add(new PurchaseData(evt.Id, evt.State != null ? evt.State.Id : -1, evt.Customer.Id, evt.EventDate));
                     }
                 }
 

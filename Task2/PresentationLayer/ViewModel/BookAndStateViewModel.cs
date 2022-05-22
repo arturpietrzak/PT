@@ -5,18 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PresentationLayer.API;
-using ServiceLayer.API;
 
 namespace PresentationLayer.ViewModel
 {
     internal class BookAndStateViewModel : ViewModelBase
     {
-        private IBookService bookService;
-        private IStateService stateService;
-        private IPurchaseService purchaseService;
+        private IBookModel bookModel;
+        private IStateModel stateModel;
+        private IPurchaseModel purchaseModel;
 
-        private ICollection<IBookData> _bookData;
-        public ICollection<IBookData> bookData
+        private ICollection<IBookModelData> _bookData;
+        public ICollection<IBookModelData> bookData
         {
             get
             {
@@ -29,8 +28,8 @@ namespace PresentationLayer.ViewModel
             }
         }
 
-        private IEnumerable<IStateData> _stateData;
-        public IEnumerable<IStateData> stateData
+        private ICollection<IStateModelData> _stateData;
+        public ICollection<IStateModelData> stateData
         {
             get
             {
@@ -180,14 +179,14 @@ namespace PresentationLayer.ViewModel
         }
 
         // Constructor
-        public BookAndStateViewModel(NavigationModel navigationModel)
+        public BookAndStateViewModel(NavigationModel navigationModel, IBookModel bookModel, IStateModel stateModel, IPurchaseModel purchaseModel)
         {
-            bookService = IBookService.CreateAPI();
-            purchaseService = IPurchaseService.CreateAPI();
-            stateService = IStateService.CreateAPI();
+            this.bookModel = bookModel;
+            this.stateModel = stateModel;
+            this.purchaseModel = purchaseModel;
 
-            bookData = bookService.GetAllBooks();
-            stateData = new List<IStateData>();
+            bookData = bookModel.GetAllBooks();
+            stateData = new List<IStateModelData>();
 
             NavigateHomeCommand = new NavigateHome(navigationModel);
             AddBookCommand = new RelayCommand(AddBook);
@@ -213,11 +212,10 @@ namespace PresentationLayer.ViewModel
         // Functions for commands
         private void AddBook()
         {
-            bool added = bookService.AddBook(newId, newName, newPages, newPrice);
+            bool added = bookModel.Service.AddBook(newId, newName, newPages, newPrice);
 
             if (added)
             {
-                RefreshBooksCommand.Execute(this);
             }
             else
             {
@@ -227,7 +225,7 @@ namespace PresentationLayer.ViewModel
 
         private void UpdateBook()
         {
-            bool updated = bookService.UpdateBook(newId, newName, newPages, newPrice);
+            bool updated = bookModel.Service.UpdateBook(newId, newName, newPages, newPrice);
 
             if (updated)
             {
@@ -241,15 +239,13 @@ namespace PresentationLayer.ViewModel
 
         private void RefreshBooks()
         {
-            bookData = bookService.GetAllBooks();
+            bookData = bookModel.GetAllBooks();
         }
 
         private void CheckDetails()
         {
-            stateService = IStateService.CreateAPI();
-
-            List<IStateData> list = new List<IStateData>();
-            IStateData v_stateData = stateService.GetStateByBookId(detailId);
+            List<IStateModelData> list = new List<IStateModelData>();
+            IStateModelData v_stateData = stateModel.GetStateByBookId(detailId);
 
             if (v_stateData == null)
             {
@@ -263,26 +259,35 @@ namespace PresentationLayer.ViewModel
 
         private void PurchaseBook()
         {
-            bool purchased = purchaseService.HandlePurchase(
+            if (stateModel.Service.GetStateByBookId(purchaseBookId) == null)
+            {
+                return;
+            }
+
+            bool purchased = purchaseModel.Service.HandlePurchase(
                     purchaseCustomerId,
                     purchaseBookId,
-                    stateService.GetStateByBookId(purchaseBookId).State_Id
+                    stateModel.Service.GetStateByBookId(purchaseBookId).State_Id
                 );
+
+            stateModel.Service.UpdateStateAmount(purchaseBookId, stateModel.Service.GetStateByBookId(purchaseBookId).Amount - 1);
+
 
             if (purchased)
             {
-                CheckDetailsCommand.Execute(this);
-                RefreshBooksCommand.Execute(this);
             }
             else
             {
                 // TODO message if error 
             }
+
+            CheckDetails();
+
         }
 
         private void DeleteBook()
         {
-            bool deleted = bookService.DeleteBook(detailId);
+            bool deleted = bookModel.Service.DeleteBook(detailId);
             if (deleted)
             {
                 RefreshBooksCommand.Execute(this);
@@ -295,10 +300,10 @@ namespace PresentationLayer.ViewModel
 
         private void UpdateAmount()
         {
-            bool updated = stateService.UpdateStateAmount(updateAmountId, updateAmount);
+            bool updated = stateModel.Service.UpdateStateAmount(updateAmountId, updateAmount);
             if (updated)
             {
-                RefreshBooksCommand.Execute(this);
+
             }
             else
             {

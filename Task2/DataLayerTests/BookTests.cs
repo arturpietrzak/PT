@@ -18,6 +18,7 @@ namespace DataLayerTests
         public void Startup()
         {
             dataLayer = IDataLayerAPI.CreateAPIUsingSQL();
+            dataLayer.Connect("Data Source=DESKTOP-KE9V009;Initial Catalog=BookstoreTest;Persist Security Info=True;User ID=bookstore;Password=123");
         }
 
         [TestMethod]

@@ -65,30 +65,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\IBookModel.cs" />
     <Compile Include="API\IBookModelData.cs" />
-    <Compile Include="API\IBookModelView.cs" />
+    <Compile Include="API\ICustomerModel.cs" />
     <Compile Include="API\ICustomerModelData.cs" />
-    <Compile Include="API\ICustomerModelView.cs" />
+    <Compile Include="API\IPurchaseModel.cs" />
     <Compile Include="API\IPurchaseModelData.cs" />
-    <Compile Include="API\IPurchaseModelView.cs" />
+    <Compile Include="API\IStateModel.cs" />
     <Compile Include="API\IStateModelData.cs" />
-    <Compile Include="API\IStateModelView.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\NavigateCustomers.cs" />
     <Compile Include="Commands\NavigatePurchases.cs" />
     <Compile Include="Commands\NavigateBookAndState.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Model\BookModel.cs" />
     <Compile Include="Model\BookModelData.cs" />
-    <Compile Include="Model\CustomerModelData.cs" />
+    <Compile Include="Model\CustomerModel.cs" />
     <Compile Include="Commands\NavigateHome.cs" />
+    <Compile Include="Model\CustomerModelData.cs" />
     <Compile Include="Model\NavigationModel.cs" />
+    <Compile Include="Model\PurchaseModel.cs" />
     <Compile Include="Model\PurchaseModelData.cs" />
+    <Compile Include="Model\StateModel.cs" />
     <Compile Include="Model\StateModelData.cs" />
     <Compile Include="ViewModel\BookAndStateViewModel.cs" />
     <Compile Include="ViewModel\CustomersViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\PurchaseFormViewModel.cs" />
     <Compile Include="ViewModel\PurchasesViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\BookAndStateView.xaml.cs">

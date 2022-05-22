@@ -9,7 +9,8 @@ namespace PresentationLayer.API
 {
     public interface ICustomerModelData
     {
-        ICustomerService Service { get; }
-        IEnumerable<ICustomerData> Customers { get; }
+        int Customer_Id { get; }
+        string Name { get; }
+        string Surname { get; }
     }
 }

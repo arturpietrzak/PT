@@ -19,6 +19,43 @@
             <TextBlock Foreground="White" Grid.Row="0" Text="Bookstore/Purchases" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Button Command="{Binding NavigateHomeCommand}" Background="#7267CB"  Content="🏠" HorizontalAlignment="Left" VerticalAlignment="Center"  Padding="10 10" Margin="5 0 0 0"/>
         </Grid>
-    </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Row="0" Grid.Column="0" IsReadOnly="True" ItemsSource="{Binding purchaseData}" AutoGenerateColumns="False" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Purchase_Id}" Header="Purchase ID" Width="3*"/>
+                    <DataGridTextColumn Binding="{Binding Customer_id}" Header="Customer ID" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Column="1" VerticalAlignment="Top" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Check purchase details" FontWeight="Bold"/>
+                <Grid Grid.Row="1" >
+                    <Label Content="Purchase ID" Height="28" HorizontalAlignment="Left" Name="PurchaseIdLabel" VerticalAlignment="Top" />
+                    <TextBox Text="{Binding detailId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="0,20,0,0" Name="PurchaseIdTextBox" VerticalAlignment="Top"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Button HorizontalAlignment="Stretch" Content="Check details" Command="{Binding Path=CheckDetailsCommand}" />
+                </Grid>
+                <DataGrid Grid.Row="3" VerticalAlignment="Stretch" IsReadOnly="True" ItemsSource="{Binding detailData}" AutoGenerateColumns="False" Margin="0 10 0 0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Purchase_Id}" Header="Purchase ID" Width="9*"/>
+                        <DataGridTextColumn Binding="{Binding State_Id}" Header="State ID" Width="52"/>
+                        <DataGridTextColumn Binding="{Binding Customer_id}" Header="Cust ID" Width="49"/>
+                        <DataGridTextColumn Binding="{Binding Purchase_date}" Header="Purchase Date" Width="5*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+        </Grid>
 </UserControl>
 

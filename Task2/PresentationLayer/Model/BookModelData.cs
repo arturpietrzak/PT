@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ServiceLayer.API;
 using PresentationLayer.API;
 
 namespace PresentationLayer
 {
-    public class BookModelData : IBookModelData
+    internal class BookModelData : IBookModelData
     {
-        public BookModelData(IBookService service)
-        {
-            Service = service;
-        }
+        public int Book_Id { get; }
+        public string Name { get; }
+        public int Pages { get; }
+        public double Price { get; }
 
-        public IBookService Service { get; }
-
-        public IEnumerable<IBookData> Books
+        public BookModelData(int book_Id, string name, int pages, double price)
         {
-            get
-            {
-                IEnumerable<IBookData> books = Service.GetAllBooks();
-                return books;
-            }
+            Book_Id = book_Id;
+            Name = name;
+            Pages = pages;
+            Price = price;
         }
     }
 }

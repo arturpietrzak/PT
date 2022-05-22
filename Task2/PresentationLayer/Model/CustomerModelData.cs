@@ -4,31 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PresentationLayer.API;
-using ServiceLayer.API;
 
 namespace PresentationLayer
 {
     internal class CustomerModelData : ICustomerModelData
     {
-        public CustomerModelData(ICustomerService service)
-        {
-            Service = service;
-        }
+        public int Customer_Id { get; }
+        public string Name { get; }
+        public string Surname { get; }
 
-        public ICustomerService Service { get; }
-
-        public IEnumerable<ICustomerData> Customers
+        public CustomerModelData(int customer_Id, string name, string surname)
         {
-            get
-            {
-                IEnumerable<ICustomerData> customers = Service.GetAllCustomers();
-                return customers;
-            }
-        }
-
-        public ICustomerModelView CreateCustomer(int customer_id, string name, string Surname)
-        {
-            return null;//CustomerModelView(customer_id, name, Surname);
+            Customer_Id = customer_Id;
+            Name = name;
+            Surname = surname;
         }
     }
 }

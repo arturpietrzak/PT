@@ -7,11 +7,10 @@ using ServiceLayer.API;
 
 namespace PresentationLayer.API
 {
-    public interface IBookModelData
+    public interface IStateModel
     {
-        int Book_Id { get; }
-        string Name { get; }
-        int Pages { get; }
-        double Price { get; }
+        IStateModelData Transform(IStateData data);
+        IStateService Service { get; }
+        IStateModelData GetStateByBookId(int id);
     }
 }

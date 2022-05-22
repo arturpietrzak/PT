@@ -34,7 +34,7 @@
             </DataGrid>
             <Grid Grid.Column="1" VerticalAlignment="Top" Margin="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="18"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -43,8 +43,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-
                 </Grid.RowDefinitions>
+                
                 <TextBlock Grid.Row="0" Text="Add new customer/Edit existing one" FontWeight="Bold"/>
                 <Grid Grid.Row="1" >
                     <Label Content="Customer_id" Height="28" HorizontalAlignment="Left" Name="CustomerIdLabel" VerticalAlignment="Top" />

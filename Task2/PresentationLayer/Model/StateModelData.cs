@@ -3,31 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ServiceLayer.API;
 using PresentationLayer.API;
 
 namespace PresentationLayer
 {
     internal class StateModelData : IStateModelData
     {
-        public StateModelData(IStateService service)
-        {
-            Service = service;
-        }
-        public IStateService Service { get; }
-        public IEnumerable<IStateData> States
-        {
-            get
-            {
-                IEnumerable<IStateData> states = Service.GetAllStates();
-                return states;
-            }
-        }
+        public int State_Id { get; }
+        public int Book_Id { get; }
+        public int Amount { get; }
 
-
-        public IStateModelView CreateState(int state_id, int book_id, int amount)
+        public StateModelData(int state_Id, int book_Id, int amount)
         {
-            return null;// new StateModelView(state_id, book_id, amount);
+            State_Id = state_Id;
+            Book_Id = book_Id;
+            Amount = amount;
         }
     }
 }
