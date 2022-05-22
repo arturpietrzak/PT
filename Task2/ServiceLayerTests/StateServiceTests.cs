@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataLayer.API;
+using ServiceLayer.API;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataLayer.Implementations;
 
-namespace DataLayerTests
+namespace ServiceLayerTests
 {
-
     [TestClass]
-    public class EventTests
+    public class StateServiceTests
     {
-        private IDataLayerAPI dataLayer;
+        private IStateService stateService;
 
         [TestInitialize]
         public void Startup()
         {
-            dataLayer = IDataLayerAPI.CreateTestAPI();
+            stateService = IStateService.CreateTestAPI();
         }
     }
 }

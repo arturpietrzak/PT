@@ -25,6 +25,11 @@ namespace ServiceLayer.API
             return new API(IDataLayerAPI.CreateAPIUsingSQL());
         }
 
+        public static IBookService CreateTestAPI()
+        {
+            return new API(IDataLayerAPI.CreateTestAPI());
+        }
+
         internal class API : IBookService
         {
             private IDataLayerAPI dataLayer;

@@ -24,6 +24,10 @@ namespace ServiceLayer.API
         {
             return new API(IDataLayerAPI.CreateAPIUsingSQL());
         }
+        public static ICustomerService CreateTestAPI()
+        {
+            return new API(IDataLayerAPI.CreateTestAPI());
+        }
 
         internal class API : ICustomerService
         {

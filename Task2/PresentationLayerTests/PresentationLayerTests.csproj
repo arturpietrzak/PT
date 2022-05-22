@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9931E0A0-F3E6-41CA-B3C2-21886EBD27B2}</ProjectGuid>
+    <ProjectGuid>{49CFA391-BD67-48F4-83F9-E7ABFF7E4D75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceLayerTests</RootNamespace>
-    <AssemblyName>ServiceLayerTests</AssemblyName>
+    <RootNamespace>PresentationLayerTests</RootNamespace>
+    <AssemblyName>PresentationLayerTests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -20,7 +20,6 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,19 +49,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookServiceTests.cs" />
-    <Compile Include="CustomerServiceTests.cs" />
+    <Compile Include="CustomersViewModel.cs" />
+    <Compile Include="PurchaseViewModel.cs" />
+    <Compile Include="BookAndStateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseServiceTests.cs" />
-    <Compile Include="StateServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj">
-      <Project>{a5c77caf-567d-4173-95fe-8f823347c18b}</Project>
-      <Name>ServiceLayer</Name>
+    <ProjectReference Include="..\PresentationLayer\PresentationLayer.csproj">
+      <Project>{06086441-7aeb-468e-bce2-5fde76c85533}</Project>
+      <Name>PresentationLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -17,8 +17,7 @@ namespace DataLayerTests
         [TestInitialize]
         public void Startup()
         {
-            dataLayer = IDataLayerAPI.CreateAPIUsingSQL();
-            dataLayer.Connect("Data Source=DESKTOP-KE9V009;Initial Catalog=BookstoreTest;Persist Security Info=True;User ID=bookstore;Password=123");
+            dataLayer = IDataLayerAPI.CreateTestAPI();
         }
 
         [TestMethod]
@@ -47,7 +46,5 @@ namespace DataLayerTests
             Assert.IsTrue(dataLayer.UpdateBook(1, "test book", 100, 20.10));
             Assert.AreEqual(dataLayer.GetBook(1).Pages, 100);
         }
-
-
     }
 }

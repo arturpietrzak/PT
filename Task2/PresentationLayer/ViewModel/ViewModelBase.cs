@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace PresentationLayer.ViewModel
 {
-    internal class ViewModelBase : INotifyPropertyChanged, IDisposable
+    public class ViewModelBase : INotifyPropertyChanged, IDisposable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

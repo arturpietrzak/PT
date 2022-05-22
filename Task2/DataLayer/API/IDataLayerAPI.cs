@@ -45,8 +45,12 @@ namespace DataLayer.API
         {
             return new SQLApi();
         }
+        public static IDataLayerAPI CreateTestAPI()
+        {
+            return new TestAPI();
+        }
 
-        internal class SQLApi : IDataLayerAPI
+        private class SQLApi : IDataLayerAPI
         {
 
             BookstoreDataContext context;
@@ -431,6 +435,298 @@ namespace DataLayer.API
 
                 context.states.DeleteOnSubmit(state);
                 context.SubmitChanges();
+
+                return true;
+            }
+        }
+
+        // For testing
+        private class TestAPI : IDataLayerAPI
+        {
+            List<IBook> bookContext = new List<IBook>();
+            List<ICustomer> customerContext = new List<ICustomer>();
+            List<IState> stateContext = new List<IState>();
+            List<IEvent> eventContext = new List<IEvent>();
+
+            public override void Connect(String connectionString = null)
+            {
+
+            }
+
+            public override void ClearTables()
+            {
+                this.bookContext = new List<IBook>();
+                this.customerContext = new List<ICustomer>();
+                this.stateContext = new List<IState>();
+                this.eventContext = new List<IEvent>();
+            }
+
+            // For IBook
+            public override bool CreateBook(int ID, string name, int pages, double price)
+            {
+                if (GetBook(ID) != null || name == null || pages <= 0 || price < 0 || ID < 0)
+                {
+                    return false;
+                }
+
+                bookContext.Add(new Book(ID, name, pages, price));
+
+                return true;
+            }
+            public override ICollection<IBook> GetAllBooks()
+            {
+                return this.bookContext;
+            }
+            public override IBook GetBook(int ID)
+            {
+                foreach (var book in bookContext)
+                {
+                    if (book.Id == ID)
+                    {
+                        return book;
+                    }
+                }
+
+                return null;
+            }
+            public override bool UpdateBook(int ID, String name, int pages, double price)
+            {
+                IBook book = GetBook(ID);
+
+                if (book == null)
+                {
+                    return false;
+                }
+
+                book.Name = name;
+                book.Pages = pages;
+                book.Price = price;
+                
+                return true;
+            }
+
+            public override bool DeleteBook(int ID)
+            {
+                IBook book = GetBook(ID);
+
+                if (book == null)
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < bookContext.Count; i++)
+                {
+                    if (bookContext[i].Id == ID)
+                    {
+                        bookContext.RemoveAt(i);
+                    }
+                }
+
+                return true;
+            }
+
+            // For ICustomer
+            public override bool CreateCustomer(int ID, string name, string surname)
+            {
+                if (GetCustomer(ID) != null || ID < 0 || name == null || name.Length > 100 || surname == null || surname.Length > 100)
+                {
+                    return false;
+                }
+
+
+                customerContext.Add(new Customer(ID, name, surname));
+
+                return true;
+            }
+            public override ICollection<ICustomer> GetAllCustomers()
+            {
+                return customerContext;
+            }
+            public override ICustomer GetCustomer(int? ID)
+            {
+                foreach (var customer in customerContext)
+                {
+                    if (customer.Id == ID)
+                    {
+                        return customer;
+                    }
+                }
+
+                return null;
+            }
+            public override bool UpdateCustomer(int ID, String name, String surname)
+            {
+                ICustomer customer = GetCustomer(ID);
+
+                if (customer == null)
+                {
+                    return false;
+                }
+
+                customer.Name = name;
+                customer.Surname = surname;
+
+                return true;
+            }
+            public override bool DeleteCustomer(int ID)
+            {
+                ICustomer customer = GetCustomer(ID);
+
+                if (customer == null)
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < customerContext.Count; i++)
+                {
+                    if (customerContext[i].Id == ID)
+                    {
+                        customerContext.RemoveAt(i);
+                    }
+                }
+
+                return true;
+            }
+
+            // For IEvent
+            public override bool CreateEvent(IState state, ICustomer customer)
+            {
+                if (state.Equals(null) || GetState(state.Id) == null || customer.Equals(null) || GetCustomer(customer.Id) == null)
+                {
+                    return false;
+                }
+
+                eventContext.Add(new EventPurchase(state, customer));
+
+                return true;
+            }
+            public override IEvent GetEventById(String id)
+            {
+                foreach (var evt in eventContext)
+                {
+                    if (evt.Id == id)
+                    {
+                        return evt;
+                    }
+                }
+
+                return null;
+            }
+
+            public override ICollection<IEvent> GetAllEvents()
+            {
+                return this.eventContext;
+            }
+            public override ICollection<IEvent> GetEventsForState(IState state)
+            {
+                ICollection<IEvent> foundEvents = new List<IEvent>();
+                ICollection<IEvent> allEvents = GetAllEvents();
+
+                foreach (var evt in allEvents)
+                {
+                    if (evt.State.Id == state.Id)
+                    {
+                        foundEvents.Add(evt);
+                    }
+                }
+
+                return foundEvents;
+            }
+            public override ICollection<IEvent> GetEventsForCustomer(ICustomer customer)
+            {
+                ICollection<IEvent> foundEvents = new List<IEvent>();
+                ICollection<IEvent> allEvents = GetAllEvents();
+
+                foreach (var evt in allEvents)
+                {
+                    if (evt.Customer.Id == customer.Id)
+                    {
+                        foundEvents.Add(evt);
+                    }
+                }
+
+                return foundEvents;
+            }
+
+            // For IState
+            public override bool CreateState(int state_id, IBook book, int amount)
+            {
+                if (GetStateForBook(book) != null || GetState(state_id) != null || amount < 0 || state_id < 0)
+                {
+                    return false;
+                }
+
+                stateContext.Add(new State(state_id, book, amount));
+
+                return true;
+            }
+            public override ICollection<IState> GetAllStates()
+            {
+                return this.stateContext;
+            }
+            public override IState GetState(int? ID)
+            {
+                foreach (var state in this.stateContext)
+                {
+                    if (state.Id == ID)
+                    {
+                        return state;
+                    }
+                }
+
+                return null;
+            }
+            public override IState GetStateForBook(IBook book)
+            {
+                if (book == null)
+                {
+                    return null;
+                }
+
+                foreach (var state in this.stateContext)
+                {
+                    if (state.Book.Id == book.Id)
+                    {
+                        return state;
+                    }
+                }
+
+                return null;
+            }
+            public override bool UpdateStateAmount(int ID, int amount)
+            {
+                if (GetState(ID) == null || ID.Equals(null) || amount < 0)
+                {
+                    return false;
+                }
+
+                IState state = GetState(ID);
+
+                if (state == null)
+                {
+                    return false;
+                }
+
+                state.Amount = amount;
+
+                return true;
+            }
+            public override bool DeleteState(int ID)
+            {
+                IState state = GetState(ID);
+
+                if (state == null)
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < stateContext.Count; i++)
+                {
+                    if (stateContext[i].Id == ID)
+                    {
+                        stateContext.RemoveAt(i);
+                    }
+                }
 
                 return true;
             }
