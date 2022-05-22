@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PresentationLayer.API;
 using ServiceLayer.API;
 
-namespace PresentationLayer
+namespace PresentationLayer.API
 {
     internal class CustomerModel : ICustomerModel
     {
@@ -37,6 +37,19 @@ namespace PresentationLayer
             }
 
             return modelData;
+        }
+
+        public bool AddCustomer(int id, String name, String surname)
+        {
+            return Service.AddCustomer(id, name, surname); 
+        }
+        public bool UpdateCustomer(int id, String name, String surname)
+        {
+            return Service.UpdateCustomer(id, name, surname);
+        }
+        public bool DeleteCustomer(int id)
+        {
+            return Service.DeleteCustomer(id);
         }
 
     }

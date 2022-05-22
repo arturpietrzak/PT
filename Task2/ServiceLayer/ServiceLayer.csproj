@@ -55,10 +55,6 @@
     <Compile Include="Implementations\PurchaseData.cs" />
     <Compile Include="Implementations\StateData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Implementations\BookService.cs" />
-    <Compile Include="Implementations\CustomerService.cs" />
-    <Compile Include="Implementations\PurchaseService.cs" />
-    <Compile Include="Implementations\StateService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj">

@@ -12,6 +12,10 @@ namespace PresentationLayer.API
         IBookModelData Transform(IBookData data);
         IBookService Service { get; }
         ICollection<IBookModelData> GetAllBooks();
+        bool AddBook(int id, String name, int pages, double price);
+
+        bool UpdateBook(int id, String name, int pages, double price);
+        bool DeleteBook(int id);
     }
 }
 

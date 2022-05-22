@@ -212,7 +212,7 @@ namespace PresentationLayer.ViewModel
         // Functions for commands
         private void AddBook()
         {
-            bool added = bookModel.Service.AddBook(newId, newName, newPages, newPrice);
+            bool added = bookModel.AddBook(newId, newName, newPages, newPrice);
 
             if (added)
             {
@@ -225,7 +225,7 @@ namespace PresentationLayer.ViewModel
 
         private void UpdateBook()
         {
-            bool updated = bookModel.Service.UpdateBook(newId, newName, newPages, newPrice);
+            bool updated = bookModel.UpdateBook(newId, newName, newPages, newPrice);
 
             if (updated)
             {
@@ -259,18 +259,18 @@ namespace PresentationLayer.ViewModel
 
         private void PurchaseBook()
         {
-            if (stateModel.Service.GetStateByBookId(purchaseBookId) == null)
+            if (stateModel.GetStateByBookId(purchaseBookId) == null)
             {
                 return;
             }
 
-            bool purchased = purchaseModel.Service.HandlePurchase(
+            bool purchased = purchaseModel.HandlePurchase(
                     purchaseCustomerId,
                     purchaseBookId,
-                    stateModel.Service.GetStateByBookId(purchaseBookId).State_Id
+                    stateModel.GetStateByBookId(purchaseBookId).State_Id
                 );
 
-            stateModel.Service.UpdateStateAmount(purchaseBookId, stateModel.Service.GetStateByBookId(purchaseBookId).Amount - 1);
+            stateModel.UpdateStateAmount(purchaseBookId, stateModel.GetStateByBookId(purchaseBookId).Amount - 1);
 
 
             if (purchased)
@@ -287,7 +287,7 @@ namespace PresentationLayer.ViewModel
 
         private void DeleteBook()
         {
-            bool deleted = bookModel.Service.DeleteBook(detailId);
+            bool deleted = bookModel.DeleteBook(detailId);
             if (deleted)
             {
                 RefreshBooksCommand.Execute(this);
@@ -300,7 +300,7 @@ namespace PresentationLayer.ViewModel
 
         private void UpdateAmount()
         {
-            bool updated = stateModel.Service.UpdateStateAmount(updateAmountId, updateAmount);
+            bool updated = stateModel.UpdateStateAmount(updateAmountId, updateAmount);
             if (updated)
             {
 

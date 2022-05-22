@@ -12,5 +12,6 @@ namespace PresentationLayer.API
         IStateModelData Transform(IStateData data);
         IStateService Service { get; }
         IStateModelData GetStateByBookId(int id);
+        bool UpdateStateAmount(int book_id, int newAmount);
     }
 }

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PresentationLayer.API;
 using ServiceLayer.API;
 
-namespace PresentationLayer
+namespace PresentationLayer.API
 {
     internal class PurchaseModel : IPurchaseModel
     {
@@ -55,6 +54,11 @@ namespace PresentationLayer
         public IPurchaseModelData GetPurchaseByID(String id)
         {
             return Transform(Service.GetPurchaseByID(id));
+        }
+
+        public bool HandlePurchase(int customer_id, int book_id, int state_id)
+        {
+            return Service.HandlePurchase(customer_id, book_id, state_id);
         }
     }
 }

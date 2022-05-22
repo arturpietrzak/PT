@@ -12,5 +12,9 @@ namespace PresentationLayer.API
         ICustomerModelData Transform(ICustomerData data);
         ICustomerService Service { get; }
         ICollection<ICustomerModelData> GetAllCustomers();
+        bool AddCustomer(int id, String name, String surname);
+        bool UpdateCustomer(int id, String name, String surname);
+        bool DeleteCustomer(int id);
+
     }
 }

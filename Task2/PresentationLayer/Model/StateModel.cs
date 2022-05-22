@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ServiceLayer.API;
 using PresentationLayer.API;
 
-namespace PresentationLayer
+namespace PresentationLayer.API
 {
     internal class StateModel : IStateModel
     {
@@ -34,5 +34,10 @@ namespace PresentationLayer
         }
 
         public IStateService Service { get; }
+
+        public bool UpdateStateAmount(int book_id, int newAmount)
+        {
+            return Service.UpdateStateAmount(book_id, newAmount);
+        }
     }
 }

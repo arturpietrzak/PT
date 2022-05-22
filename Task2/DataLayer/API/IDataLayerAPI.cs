@@ -142,6 +142,12 @@ namespace DataLayer.API
             public override bool UpdateBook(int ID, String name, int pages, double price)
             {
                 books book = context.books.Where(b => b.book_id == ID).SingleOrDefault();
+
+                if (book == null)
+                {
+                    return false;
+                }
+
                 if (ID.Equals(null) || name.Equals(null) || pages <= 0 || price < 0 || GetBook(ID) == null)
                 {
                     return false;

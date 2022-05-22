@@ -121,7 +121,7 @@ namespace PresentationLayer.ViewModel
 
         private void AddCustomer()
         {
-            bool added = customerModel.Service.AddCustomer(id, name, surname);
+            bool added = customerModel.AddCustomer(id, name, surname);
 
             if (added)
             {
@@ -135,7 +135,7 @@ namespace PresentationLayer.ViewModel
 
         private void UpdateCustomer()
         {
-            bool updated = customerModel.Service.UpdateCustomer(id, name, surname);
+            bool updated = customerModel.UpdateCustomer(id, name, surname);
 
             if (updated)
             {
@@ -159,7 +159,7 @@ namespace PresentationLayer.ViewModel
 
         private void DeleteCustomer()
         {
-            bool deleted = customerModel.Service.DeleteCustomer(selectedId);
+            bool deleted = customerModel.DeleteCustomer(selectedId);
 
             if (deleted)
             {

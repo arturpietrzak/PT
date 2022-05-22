@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PresentationLayer
+namespace PresentationLayer.API
 {
     // Class used to store current ViewModel to switch between views
     class NavigationModel

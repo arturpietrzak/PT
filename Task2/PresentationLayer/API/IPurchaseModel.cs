@@ -14,5 +14,6 @@ namespace PresentationLayer.API
         ICollection<IPurchaseModelData> GetAllPurchasesByCustomer(int id);
         ICollection<IPurchaseModelData> GetAllPurchases();
         IPurchaseModelData GetPurchaseByID(String id);
+        bool HandlePurchase(int customer_id, int book_id, int state_id);
     }
 }
