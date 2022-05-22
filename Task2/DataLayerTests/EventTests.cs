@@ -40,11 +40,17 @@ namespace DataLayerTests
             dataLayer.CreateCustomer(2, "Carl", "Smith");
             dataLayer.CreateBook(1, "test book", 200, 20.10);
             dataLayer.CreateState(1, dataLayer.GetBook(1), 10);
-            dataLayer.CreateEvent(dataLayer.GetState(1), dataLayer.GetCustomer(1));
+
+            dataLayer.CreateEvent(dataLayer.GetState(1), dataLayer.GetCustomer(1));    
             dataLayer.CreateEvent(dataLayer.GetState(1), dataLayer.GetCustomer(2));
 
-            List<IEvent> list = new List<IEvent>();
-           // list.Add(dataLayer.GetEventById(dataLayer.GetEventById())
+            List<IEvent> expected = new List<IEvent>();
+            expected.AddRange(dataLayer.GetAllEvents().Where( e => e.State.Id == 1).ToList());
+            List<IEvent> recieved = new List<IEvent>();
+            recieved = dataLayer.GetEventsForState(dataLayer.GetState(1)).ToList();
+
+            CollectionAssert.AreEqual(recieved, expected);
+            
         }
 
     }

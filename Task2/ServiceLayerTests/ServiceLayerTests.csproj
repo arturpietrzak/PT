@@ -60,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{ef093a08-591d-40ea-b8ee-94784e91a73b}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj">
       <Project>{a5c77caf-567d-4173-95fe-8f823347c18b}</Project>
       <Name>ServiceLayer</Name>
