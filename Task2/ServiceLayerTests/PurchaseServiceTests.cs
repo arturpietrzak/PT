@@ -33,9 +33,8 @@ namespace ServiceLayerTests
             //Assert.IsTrue(stateService.AddState(1, bookService.GetBookById(1).Book_Id, 10));
             var customerID = customerService.GetCustomerById(1).Customer_Id;
             var bookID = bookService.GetBookById(1).Book_Id;
-            var stateID = stateService.GetStateByStateId(1).State_Id;
 
-            Assert.IsTrue(!purchaseService.HandlePurchase(customerID, bookID, stateID));
+            Assert.IsTrue(!purchaseService.HandlePurchase(customerID, bookID, 1));
         }
 
         [TestMethod]
@@ -47,8 +46,8 @@ namespace ServiceLayerTests
             stateService.AddState(2, customerService.GetCustomerById(1).Customer_Id, 30);
 
 
-            Assert.IsFalse(purchaseService.HandlePurchase(customerService.GetCustomerById(1).Customer_Id, bookService.GetBookById(1).Book_Id, stateService.GetStateByStateId(1).State_Id));
-            Assert.IsFalse(purchaseService.HandlePurchase(customerService.GetCustomerById(1).Customer_Id, bookService.GetBookById(1).Book_Id, stateService.GetStateByStateId(2).State_Id));
+            Assert.IsFalse(purchaseService.HandlePurchase(1, 1, 1));
+            Assert.IsFalse(purchaseService.HandlePurchase(1, 1, 2));
 
         }
     }

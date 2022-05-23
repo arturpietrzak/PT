@@ -120,9 +120,15 @@ namespace DataLayer.API
             {
                 var booksDb = from books in context.books select books;
                 List<IBook> list = new List<IBook>();
-                foreach (var book in booksDb)
+
+                try
                 {
-                    list.Add(Transform(book));
+                    foreach (var book in booksDb)
+                    {
+                        list.Add(Transform(book));
+                    }
+                } catch (Exception e)
+                {
                 }
 
                 return list;
@@ -203,10 +209,18 @@ namespace DataLayer.API
             {
                 var customersDb = from customers in context.customers select customers;
                 List<ICustomer> list = new List<ICustomer>();
-                foreach (var customer in customersDb)
+
+                try
                 {
-                    list.Add(Transform(customer));
+                    foreach (var customer in customersDb)
+                    {
+                        list.Add(Transform(customer));
+                    }
                 }
+                catch (Exception e)
+                {
+                }
+
 
                 return list;
             }
@@ -299,10 +313,19 @@ namespace DataLayer.API
                 var eventsDb = from events in context.events select events;
 
                 List<IEvent> list = new List<IEvent>();
-                foreach (var evt in eventsDb)
+                try
                 {
-                    list.Add(Transform(evt));
+                    foreach (var evt in eventsDb)
+                    {
+                        list.Add(Transform(evt));
+                    }
                 }
+                catch (Exception e)
+                {
+
+                }
+
+
 
                 return list;
             }

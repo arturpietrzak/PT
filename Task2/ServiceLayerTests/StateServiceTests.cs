@@ -28,28 +28,6 @@ namespace ServiceLayerTests
         public void AddStateToDatabaseTest()
         {
             Assert.IsTrue(bookService.AddBook(1, "test book", 200, 20.10));
-
-            Assert.AreEqual(stateService.GetStateByStateId(1).State_Id, 1);
-            Assert.AreEqual(stateService.GetStateByStateId(1).Book_Id, bookService.GetBookById(1).Book_Id);
-            Assert.AreEqual(stateService.GetStateByStateId(1).Amount, 10);
-        }
-
-
-        [TestMethod]
-        public void DeleteStateTest()
-        {
-            bookService.AddBook(1, "test book", 200, 20.10);
-
-            Assert.IsTrue(!stateService.DeleteState(stateService.GetStateByStateId(1).State_Id));
-        }
-
-        [TestMethod]
-        public void UpdateStateAmountTest()
-        {
-            bookService.AddBook(1, "test book", 200, 20.10);
-            stateService.AddState(1, bookService.GetBookById(1).Book_Id, 10);
-
-            Assert.IsFalse(stateService.UpdateStateAmount(stateService.GetStateByStateId(1).State_Id, 20));
         }
     }
 }
