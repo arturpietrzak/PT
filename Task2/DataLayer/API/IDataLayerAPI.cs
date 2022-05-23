@@ -298,7 +298,6 @@ namespace DataLayer.API
             {
                 var eventsDb = from events in context.events select events;
 
-                Console.WriteLine(eventsDb.Count());
                 List<IEvent> list = new List<IEvent>();
                 foreach (var evt in eventsDb)
                 {

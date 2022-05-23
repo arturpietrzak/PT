@@ -17,7 +17,7 @@
 
         <Grid Grid.Row="0" Background="#6E3CBC">
             <TextBlock Foreground="White" Grid.Row="0" Text="Bookstore/Books" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button Command="{Binding NavigateHomeCommand}" Background="#7267CB"  Content="🏠" HorizontalAlignment="Left" VerticalAlignment="Center"  Padding="10 10" Margin="5 0 0 0"/>
+            <Button Foreground="White" Command="{Binding NavigateHomeCommand}" Background="#7267CB"  Content="🏠" HorizontalAlignment="Left" VerticalAlignment="Center"  Padding="10 10" Margin="5 0 0 0"/>
         </Grid>
         
         <Grid Grid.Row="1">
