@@ -9,8 +9,8 @@ namespace PresentationLayer.API
 {
     public interface IStateModelData
     {
-        int State_Id { get; }
-        int Book_Id { get; }
-        int Amount { get; }
+        int State_Id { get; set; }
+        int Book_Id { get; set; }
+        int Amount { get; set; }
     }
 }

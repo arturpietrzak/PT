@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace PresentationLayer.API
 {
     // Class used to store current ViewModel to switch between views
-    class NavigationModel
+    public class NavigationModel
     {
         public event Action CurrentViewModelChanged;
         private ViewModelBase _currentViewModel;

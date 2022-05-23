@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace PresentationLayer.ViewModel
 {
-    internal class PurchasesViewModel : ViewModelBase
+    public class PurchasesViewModel : ViewModelBase
     {
         private IPurchaseModel purchaseModel;
         private ICollection<IPurchaseModelData> _purchaseData;
@@ -60,6 +60,15 @@ namespace PresentationLayer.ViewModel
             purchaseData = purchaseModel.GetAllPurchases();
 
             NavigateHomeCommand = new NavigateHome(navigationModel);
+            CheckDetailsCommand = new RelayCommand(CheckDetails);
+        }
+
+        public PurchasesViewModel(IGenerator generator)
+        {
+            this.purchaseModel = generator.GetPurchaseModel();
+            purchaseData = purchaseModel.GetAllPurchases();
+
+            NavigateHomeCommand = new NavigateHome(generator.GetNavigationModel());
             CheckDetailsCommand = new RelayCommand(CheckDetails);
         }
 

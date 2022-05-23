@@ -9,8 +9,6 @@ namespace PresentationLayer.API
 {
     public interface IBookModel
     {
-        IBookModelData Transform(IBookData data);
-        IBookService Service { get; }
         ICollection<IBookModelData> GetAllBooks();
         bool AddBook(int id, String name, int pages, double price);
 

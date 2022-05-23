@@ -9,9 +9,9 @@ namespace PresentationLayer
 {
     internal class StateModelData : IStateModelData
     {
-        public int State_Id { get; }
-        public int Book_Id { get; }
-        public int Amount { get; }
+        public int State_Id { get; set; }
+        public int Book_Id { get; set; }
+        public int Amount { get; set; }
 
         public StateModelData(int state_Id, int book_Id, int amount)
         {

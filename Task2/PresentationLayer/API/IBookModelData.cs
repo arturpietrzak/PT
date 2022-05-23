@@ -9,9 +9,9 @@ namespace PresentationLayer.API
 {
     public interface IBookModelData
     {
-        int Book_Id { get; }
-        string Name { get; }
-        int Pages { get; }
-        double Price { get; }
+        int Book_Id { get; set; }
+        string Name { get; set; }
+        int Pages { get; set; }
+        double Price { get; set; }
     }
 }

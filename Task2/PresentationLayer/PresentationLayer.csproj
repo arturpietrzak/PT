@@ -73,6 +73,7 @@
     <Compile Include="API\IBookModelData.cs" />
     <Compile Include="API\ICustomerModel.cs" />
     <Compile Include="API\ICustomerModelData.cs" />
+    <Compile Include="API\IGenerator.cs" />
     <Compile Include="API\INavigationModel.cs" />
     <Compile Include="API\IPurchaseModel.cs" />
     <Compile Include="API\IPurchaseModelData.cs" />

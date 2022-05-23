@@ -9,8 +9,6 @@ namespace PresentationLayer.API
 {
     public interface IPurchaseModel
     {
-        IPurchaseModelData Transform(IPurchaseData data);
-        IPurchaseService Service { get; }
         ICollection<IPurchaseModelData> GetAllPurchasesByCustomer(int id);
         ICollection<IPurchaseModelData> GetAllPurchases();
         IPurchaseModelData GetPurchaseByID(String id);

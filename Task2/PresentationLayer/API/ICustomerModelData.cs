@@ -9,8 +9,8 @@ namespace PresentationLayer.API
 {
     public interface ICustomerModelData
     {
-        int Customer_Id { get; }
-        string Name { get; }
-        string Surname { get; }
+        int Customer_Id { get; set; }
+        string Name { get; set; }
+        string Surname { get; set; }
     }
 }

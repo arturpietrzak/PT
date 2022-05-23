@@ -24,7 +24,7 @@ namespace PresentationLayer.API
             return new CustomerModelData(data.Customer_Id, data.Name, data.Surname);
         }
 
-        public ICustomerService Service { get; }
+        public ICustomerService Service { get; set; }
 
         public ICollection<ICustomerModelData> GetAllCustomers()
         {

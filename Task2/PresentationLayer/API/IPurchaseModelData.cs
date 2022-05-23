@@ -9,9 +9,9 @@ namespace PresentationLayer.API
 {
     public interface IPurchaseModelData
     {
-        String Purchase_Id { get; }
-        int State_Id { get; }
-        int Customer_id { get; }
-        DateTime Purchase_date { get; }
+        String Purchase_Id { get; set; }
+        int State_Id { get; set; }
+        int Customer_id { get; set; }
+        DateTime Purchase_date { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace PresentationLayer
 {
     internal class BookModelData : IBookModelData
     {
-        public int Book_Id { get; }
-        public string Name { get; }
-        public int Pages { get; }
-        public double Price { get; }
+        public int Book_Id { get; set; }
+        public string Name { get; set; }
+        public int Pages { get; set; }
+        public double Price { get; set; }
 
         public BookModelData(int book_Id, string name, int pages, double price)
         {

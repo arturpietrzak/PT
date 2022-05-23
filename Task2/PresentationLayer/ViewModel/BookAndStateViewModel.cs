@@ -8,7 +8,7 @@ using PresentationLayer.API;
 
 namespace PresentationLayer.ViewModel
 {
-    internal class BookAndStateViewModel : ViewModelBase
+    public class BookAndStateViewModel : ViewModelBase
     {
         private IBookModel bookModel;
         private IStateModel stateModel;
@@ -189,6 +189,25 @@ namespace PresentationLayer.ViewModel
             stateData = new List<IStateModelData>();
 
             NavigateHomeCommand = new NavigateHome(navigationModel);
+            AddBookCommand = new RelayCommand(AddBook);
+            UpdateBookCommand = new RelayCommand(UpdateBook);
+            RefreshBooksCommand = new RelayCommand(RefreshBooks);
+            CheckDetailsCommand = new RelayCommand(CheckDetails);
+            PurchaseBookCommand = new RelayCommand(PurchaseBook);
+            DeleteBookCommand = new RelayCommand(DeleteBook);
+            UpdateAmountCommand = new RelayCommand(UpdateAmount);
+        }
+
+        public BookAndStateViewModel(IGenerator generator)
+        {
+            this.bookModel = generator.GetBookModel();
+            this.stateModel = generator.GetStateModel();
+            this.purchaseModel = generator.GetPurchaseModel();
+
+            bookData = bookModel.GetAllBooks();
+            stateData = new List<IStateModelData>();
+
+            NavigateHomeCommand = new NavigateHome(generator.GetNavigationModel());
             AddBookCommand = new RelayCommand(AddBook);
             UpdateBookCommand = new RelayCommand(UpdateBook);
             RefreshBooksCommand = new RelayCommand(RefreshBooks);

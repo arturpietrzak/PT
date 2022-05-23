@@ -8,7 +8,7 @@ using PresentationLayer.API;
 
 namespace PresentationLayer.ViewModel
 {
-    internal class CustomersViewModel : ViewModelBase
+    public class CustomersViewModel : ViewModelBase
     {
         private ICustomerModel customerModel;
         private IPurchaseModel purchaseModel;
@@ -47,6 +47,21 @@ namespace PresentationLayer.ViewModel
             customerData = customerModel.GetAllCustomers();
 
             NavigateHomeCommand = new NavigateHome(navigationModel);
+            AddCustomerCommand = new RelayCommand(AddCustomer);
+            UpdateCustomerCommand = new RelayCommand(UpdateCustomer);
+            RefreshCustomersCommand = new RelayCommand(RefreshCustomers);
+            CheckPurchasesCommand = new RelayCommand(CheckPurchases);
+            DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
+        }
+
+        public CustomersViewModel(IGenerator generator)
+        {
+            this.customerModel = generator.GetCustomerModel();
+            this.purchaseModel = generator.GetPurchaseModel();
+            customerData = customerModel.GetAllCustomers();
+
+            NavigateHomeCommand = new NavigateHome(generator.GetNavigationModel());
+            NavigateHomeCommand = new NavigateHome(generator.GetNavigationModel());
             AddCustomerCommand = new RelayCommand(AddCustomer);
             UpdateCustomerCommand = new RelayCommand(UpdateCustomer);
             RefreshCustomersCommand = new RelayCommand(RefreshCustomers);

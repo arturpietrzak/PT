@@ -49,10 +49,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomersViewModel.cs" />
-    <Compile Include="PurchaseViewModel.cs" />
-    <Compile Include="BookAndStateViewModel.cs" />
+    <Compile Include="CustomersViewModelTest.cs" />
+    <Compile Include="Generators\RandomGenerator.cs" />
+    <Compile Include="Generators\StaticGenerator.cs" />
+    <Compile Include="PurchaseViewModelTest.cs" />
+    <Compile Include="BookAndStateViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestImplementations\TestBookModel.cs" />
+    <Compile Include="TestImplementations\TestCustomerModel.cs" />
+    <Compile Include="TestImplementations\TestPurchaseModel.cs" />
+    <Compile Include="TestImplementations\TestStateModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,7 +68,12 @@
       <Project>{06086441-7aeb-468e-bce2-5fde76c85533}</Project>
       <Name>PresentationLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj">
+      <Project>{A5C77CAF-567D-4173-95FE-8F823347C18B}</Project>
+      <Name>ServiceLayer</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

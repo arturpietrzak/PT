@@ -9,9 +9,9 @@ namespace PresentationLayer
 {
     internal class CustomerModelData : ICustomerModelData
     {
-        public int Customer_Id { get; }
-        public string Name { get; }
-        public string Surname { get; }
+        public int Customer_Id { get; set;  }
+        public string Name { get; set; }
+        public string Surname { get; set; }
 
         public CustomerModelData(int customer_Id, string name, string surname)
         {

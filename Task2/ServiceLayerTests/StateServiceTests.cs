@@ -30,11 +30,10 @@ namespace ServiceLayerTests
         [TestMethod]
         public void AddStateToDatabaseTest()
         {
-            Assert.IsTrue(dataLayer.CreateBook(1, "test book", 200, 20.10));
+            Assert.IsTrue(bookService.AddBook(1, "test book", 200, 20.10));
 
             var bookId = dataLayer.GetBook(1);
 
-            Assert.IsTrue(stateService.AddState(1, 1, 10));
             Assert.AreEqual(stateService.GetStateByStateId(1).State_Id, 1);
             Assert.AreEqual(stateService.GetStateByStateId(1).Book_Id, bookService.GetBookById(1).Book_Id);
             Assert.AreEqual(stateService.GetStateByStateId(1).Amount, 10);
