@@ -47,17 +47,9 @@ namespace ServiceLayerTests
             stateService.AddState(2, customerService.GetCustomerById(1).Customer_Id, 30);
 
 
-            purchaseService.HandlePurchase(customerService.GetCustomerById(1).Customer_Id, bookService.GetBookById(1).Book_Id, stateService.GetStateByStateId(1).State_Id);
-            purchaseService.HandlePurchase(customerService.GetCustomerById(1).Customer_Id, bookService.GetBookById(1).Book_Id, stateService.GetStateByStateId(2).State_Id);
-            //purchaseService.GetAllPurchasesByCustomer(customerService.GetCustomerById(1).Customer_Id);
-            List<IPurchaseData> expected = new List<IPurchaseData>();
-            expected.AddRange(purchaseService.GetAllPurchases().Where(e => e.Customer_id == 1).ToList());
-            List<IPurchaseData> actual = new List<IPurchaseData> ();
-            actual = purchaseService.GetAllPurchasesByCustomer(customerService.GetCustomerById(1).Customer_Id).ToList();
-            //List<IEvent> events = dataLayer.GetAllEvents().ToList();
-            List<IPurchaseData> purchaseDatas = new List<IPurchaseData>();
+            Assert.IsFalse(purchaseService.HandlePurchase(customerService.GetCustomerById(1).Customer_Id, bookService.GetBookById(1).Book_Id, stateService.GetStateByStateId(1).State_Id));
+            Assert.IsFalse(purchaseService.HandlePurchase(customerService.GetCustomerById(1).Customer_Id, bookService.GetBookById(1).Book_Id, stateService.GetStateByStateId(2).State_Id));
 
-            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }
