@@ -46,6 +46,7 @@ namespace DataLayerTests
 
             List<IEvent> expected = new List<IEvent>();
             expected.AddRange(dataLayer.GetAllEvents().Where( e => e.State.Id == 1).ToList());
+
             List<IEvent> recieved = new List<IEvent>();
             recieved = dataLayer.GetEventsForState(dataLayer.GetState(1)).ToList();
 

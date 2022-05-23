@@ -30,7 +30,6 @@ namespace ServiceLayerTests
         {
             Assert.IsTrue(bookService.AddBook(1, "test book", 100, 30.12));
             Assert.IsTrue(customerService.AddCustomer(1, "Tom", "Black"));
-            //Assert.IsTrue(stateService.AddState(1, bookService.GetBookById(1).Book_Id, 10));
             var customerID = customerService.GetCustomerById(1).Customer_Id;
             var bookID = bookService.GetBookById(1).Book_Id;
 
