@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ServiceLayer.API;
-using DataLayer.API;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ServiceLayerTests
@@ -16,7 +15,6 @@ namespace ServiceLayerTests
         public IBookService bookService;
         public ICustomerService customerService;
 
-        private IDataLayerAPI dataLayer;
 
         [TestInitialize]
         public void Startup()
@@ -24,15 +22,12 @@ namespace ServiceLayerTests
             stateService = IStateService.CreateTestAPI();
             bookService = IBookService.CreateTestAPI();
             customerService = ICustomerService.CreateTestAPI();
-            dataLayer = IDataLayerAPI.CreateTestAPI();
     }
 
         [TestMethod]
         public void AddStateToDatabaseTest()
         {
             Assert.IsTrue(bookService.AddBook(1, "test book", 200, 20.10));
-
-            var bookId = dataLayer.GetBook(1);
 
             Assert.AreEqual(stateService.GetStateByStateId(1).State_Id, 1);
             Assert.AreEqual(stateService.GetStateByStateId(1).Book_Id, bookService.GetBookById(1).Book_Id);
