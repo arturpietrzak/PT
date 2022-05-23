@@ -24,6 +24,8 @@ namespace ServiceLayerTests
         {
 
             Assert.IsTrue(bookService.AddBook(1, "Book1", 100, 20.30));
+
+
             Assert.AreEqual(bookService.GetBookById(1).Name, "Book1");
             Assert.AreEqual(bookService.GetBookById(1).Book_Id, 1);
             Assert.AreEqual(bookService.GetBookById(1).Pages, 100);
