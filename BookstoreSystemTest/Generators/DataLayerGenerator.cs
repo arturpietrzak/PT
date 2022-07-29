@@ -35,11 +35,11 @@ namespace BookstoreSystemTest.Generators
             layer.AddBook(b10);
 
             // add clients
-            ICustomer c0 = new TCustomer(0, "Jan", "Kowalski");
-            ICustomer c1 = new TCustomer(1, "Stefan", "Urbanski");
-            ICustomer c2 = new TCustomer(2, "Bartosz", "Topolski");
-            ICustomer c3 = new TCustomer(3, "Piotr", "Adamczyk");
-            ICustomer c4 = new TCustomer(4, "Jan", "Sienkiewicz");
+            ICustomer c0 = new TCustomer(0, "Piotr", "Kowalski");
+            ICustomer c1 = new TCustomer(1, "Ela", "Urbanska");
+            ICustomer c2 = new TCustomer(2, "Norbert", "Topolski");
+            ICustomer c3 = new TCustomer(3, "Iga", "Adamczyk");
+            ICustomer c4 = new TCustomer(4, "Szymon", "Sienkiewicz");
             ICustomer c5 = new TCustomer(5, "John", "Smith");
             ICustomer c6 = new TCustomer(6, "Jack", "Brown");
             ICustomer c7 = new TCustomer(7, "Johny", "Johnson");
